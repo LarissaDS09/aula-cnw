@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CandyLand 🍭 - O Mundo dos Doces Magicos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        candyPink: '#FF6B9B',
+                        candyYellow: '#FFD93D',
+                        candyBlue: '#4D96FF',
+                        candyPurple: '#9B51E0',
+                        candyGreen: '#6BCB77',
+                        candyOrange: '#FF9F43',
+                        softBackground: '#FFF9F2'
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'sans-serif'],
+                        quicksand: ['Quicksand', 'sans-serif']
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '2.5rem'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FFF9F2;
+            color: #2D3436;
+        }
+
+        h1, h2, h3, h4, .font-title {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(3deg); }
+        }
+
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 4.5s ease-in-out 1.5s infinite;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #FFE8E8;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #FF6B9B;
+            border-radius: 10px;
+        }
+
+        /* Glassmorphism card effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .candy-shadow {
+            box-shadow: 0 10px 25px -5px rgba(255, 107, 155, 0.25);
+        }
+
+        .candy-shadow-hover {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .candy-shadow-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 30px -10px rgba(255, 107, 155, 0.35);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#FFF9F2] selection:bg-candyPink selection:text-white">
+
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-4 border-candyPink/20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between gap-4">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-candyPink to-candyYellow rounded-2xl flex items-center justify-center text-white text-2xl shadow-md group-hover:rotate-12 transition-transform">
+                        🍬
+                    </div>
+                    <div>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-candyPink via-candyPurple to-candyBlue bg-clip-text text-transparent font-title">
+                            CandyLand
+                        </span>
+                        <span class="block text-xs text-pink-400 font-medium -mt-1">Mundo Mágico dos Doces</span>
+                    </div>
+                </a>
+
+                <!-- Search Bar -->
+                <div class="flex-1 max-w-lg hidden sm:block relative">
+                    <div class="relative">
+                        <input type="text" id="searchInput" 
+                            placeholder="Buscar chocolates, gomas, pirulitos e mais..." 
+                            class="w-full pl-11 pr-4 py-3 rounded-full border-2 border-candyPink/30 focus:border-candyPink focus:outline-none bg-pink-50/50 text-gray-700 placeholder-pink-300 font-medium transition-all shadow-inner text-sm">
+                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-candyPink w-5 h-5"></i>
+                    </div>
+                </div>
+
+                <!-- Actions / Cart Button -->
+                <div class="flex items-center gap-3">
+                    <button id="cartBtn" class="relative bg-gradient-to-r from-candyPink to-candyPurple text-white px-5 py-2.5 rounded-full font-bold flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-lg hover:shadow-pink-300/50">
+                        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                        <span class="hidden md:inline">Meu Carrinho</span>
+                        <span id="cartBadge" class="bg-candyYellow text-pink-900 font-extrabold text-xs px-2 py-0.5 rounded-full shadow-inner min-w-[20px] text-center">
+                            0
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar (Only visible on small screens) -->
+            <div class="mt-3 sm:hidden">
+                <div class="relative">
+                    <input type="text" id="searchInputMobile" 
+                        placeholder="Buscar doces no CandyLand..." 
+                        class="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-candyPink/30 focus:border-candyPink focus:outline-none bg-pink-50/50 text-gray-700 placeholder-pink-300 font-medium text-sm">
+                    <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-candyPink w-4 h-4"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative overflow-hidden bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 text-white py-12 lg:py-16 px-4 mb-8">
+        <!-- Floating decorative assets -->
+        <div class="absolute -top-10 left-10 text-6xl opacity-30 animate-float pointer-events-none">🍩</div>
+        <div class="absolute top-1/2 right-12 text-6xl opacity-30 animate-float-delayed pointer-events-none">🍭</div>
+        <div class="absolute bottom-4 left-1/3 text-5xl opacity-20 animate-float pointer-events-none">🧁</div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div class="text-center md:text-left max-w-xl">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-yellow-200 text-xs font-bold uppercase tracking-wider mb-3">
+                    ✨ Entregas para todo o Brasil
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-title leading-tight drop-shadow-md">
+                    Sua vida muito mais <span class="text-candyYellow">Doce</span> & Colorida!
+                </h1>
+                <p class="mt-4 text-pink-100 text-base sm:text-lg font-medium">
+                    Explore nossa seleção artesanal de gomas, chocolates importados, caramelos cremosos e monte seu kit personalizado em minutos!
+                </p>
+                <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
+                    <a href="#catalogo" class="bg-candyYellow hover:bg-yellow-300 text-pink-900 font-bold px-7 py-3 rounded-full shadow-lg hover:shadow-yellow-300/40 transition-all active:scale-95 flex items-center gap-2">
+                        <span>Explorar Sabores</span>
+                        <i data-lucide="arrow-down" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Banner Highlight Box -->
+            <div class="relative w-full max-w-sm">
+                <div class="bg-white/90 backdrop-blur-md p-6 rounded-3xl text-gray-800 shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span class="text-3xl">🎉</span>
+                        <div>
+                            <h3 class="font-bold text-candyPink text-lg font-title">Oferta do Dia</h3>
+                            <p class="text-xs text-gray-500">Desconto especial em combos</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-4">Na compra de 3 produtos da categoria <strong>Gomas & Balas</strong>, ganhe frete grátis!</p>
+                    <div class="flex items-center justify-between text-xs font-bold text-purple-600 bg-purple-50 p-2.5 rounded-xl">
+                        <span>Cupom: CANDY2026</span>
+                        <span class="bg-purple-200 px-2 py-0.5 rounded">Ativo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1">
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- SIDEBAR: Mercado Livre Style Filters -->
+            <aside class="w-full lg:w-72 shrink-0 space-y-6">
+                <div class="bg-white p-6 rounded-3xl shadow-md border-2 border-pink-100 sticky top-24">
+                    
+                    <div class="flex items-center justify-between border-b pb-3 mb-4">
+                        <h2 class="text-lg font-bold text-gray-800 font-title flex items-center gap-2">
+                            <i data-lucide="sliders-horizontal" class="w-5 h-5 text-candyPink"></i>
+                            Filtros de Busca
+                        </h2>
+                        <button id="resetFilters" class="text-xs text-pink-500 hover:text-pink-700 font-bold underline">
+                            Limpar
+                        </button>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="mb-6">
+                        <h3 class="font-bold text-sm text-gray-700 mb-3 font-title uppercase tracking-wider">Categorias</h3>
+                        <div class="space-y-2" id="categoryFilters">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Price Filter (Slider & Inputs) -->
+                    <div class="mb-6 border-t pt-4 border-gray-100">
+                        <h3 class="font-bold text-sm text-gray-700 mb-2 font-title uppercase tracking-wider">Preço Máximo</h3>
+                        <div class="flex items-center justify-between text-xs font-bold text-candyPink mb-2">
+                            <span>R$ 0</span>
+                            <span id="priceValueDisplay">R$ 50,00</span>
+                        </div>
+                        <input type="range" id="priceRange" min="5" max="50" step="1" value="50" 
+                            class="w-full accent-candyPink bg-pink-100 h-2 rounded-lg cursor-pointer">
+                    </div>
+
+                    <!-- Attribute Filters (Diet, Vegan, etc.) -->
+                    <div class="mb-6 border-t pt-4 border-gray-100">
+                        <h3 class="font-bold text-sm text-gray-700 mb-3 font-title uppercase tracking-wider">Preferências</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
+                                <input type="checkbox" value="sugarFree" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <span>Sem Açúcar 🍏</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
+                                <input type="checkbox" value="vegan" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <span>100% Vegano 🌱</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
+                                <input type="checkbox" value="sour" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <span>Azedinho ⚡</span>
+                            </label>
+                            <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
+                                <input type="checkbox" value="crunchy" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <span>Crocante 🍫</span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+
+            <!-- PRODUCTS CONTAINER -->
+            <section class="flex-1">
+                
+                <!-- Controls Header (Results count & Sorting) -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-pink-100 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-sm font-semibold text-gray-600">
+                        Exibindo <span id="resultsCount" class="text-candyPink font-bold">0</span> produtos deliciosos
+                    </p>
+
+                    <!-- Sorting Options -->
+                    <div class="flex items-center gap-2 w-full sm:w-auto">
+                        <label for="sortSelect" class="text-xs font-bold text-gray-500 uppercase whitespace-nowrap">Ordenar por:</label>
+                        <select id="sortSelect" class="bg-pink-50/50 border border-pink-200 rounded-xl text-sm font-semibold text-gray-700 py-2 px-3 focus:outline-none focus:border-candyPink w-full sm:w-auto">
+                            <option value="popular">Mais Populares ⭐</option>
+                            <option value="priceLow">Menor Preço</option>
+                            <option value="priceHigh">Maior Preço</option>
+                            <option value="nameAZ">Nome (A - Z)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Products rendered via JS -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border-2 border-dashed border-pink-200 p-8">
+                    <div class="text-6xl mb-4">🔍🍭</div>
+                    <h3 class="text-xl font-bold text-gray-700 font-title">Nenhum doce encontrado!</h3>
+                    <p class="text-gray-500 text-sm mt-1 max-w-sm mx-auto">Tente ajustar seus filtros de preço ou alterar o termo digitado na busca.</p>
+                    <button id="clearFiltersBtn" class="mt-4 bg-candyPink text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-pink-600 transition-colors">
+                        Restaurar todos os filtros
+                    </button>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
+        <!-- Backdrop -->
+        <div id="cartBackdrop" class="absolute inset-0 bg-black/40 backdrop-blur-xs opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
+            <div id="cartPanel" class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto border-l-4 border-candyPink">
+                
+                <!-- Drawer Header -->
+                <div class="p-5 bg-gradient-to-r from-pink-500 to-purple-500 text-white flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        <h2 class="text-lg font-bold font-title">Seu Carrinho Doce</h2>
+                    </div>
+                    <button id="closeCartBtn" class="p-1 rounded-full hover:bg-white/20 transition-colors">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar">
+                    <!-- Dynamic Cart Items -->
+                </div>
+
+                <!-- Drawer Footer (Total & Checkout) -->
+                <div class="p-5 bg-pink-50/60 border-t border-pink-100 space-y-4">
+                    <div class="space-y-1.5 text-sm">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="cartSubtotal" class="font-semibold">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Frete Docinho</span>
+                            <span class="text-candyGreen font-bold">GRÁTIS</span>
+                        </div>
+                        <div class="flex justify-between text-base font-bold text-gray-800 pt-2 border-t">
+                            <span class="font-title text-lg">Total</span>
+                            <span id="cartTotal" class="text-candyPink font-title text-xl">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <button id="checkoutBtn" class="w-full bg-gradient-to-r from-candyGreen to-emerald-500 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-emerald-200 hover:opacity-95 transition-all flex items-center justify-center gap-2 active:scale-95 text-base">
+                        <span>Finalizar Pedido</span>
+                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="customizeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl transform scale-95 transition-transform duration-300 border-4 border-candyPink overflow-hidden relative">
+            
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="flex items-center gap-4 mb-4">
+                <div id="modalImage" class="text-5xl bg-pink-100 p-3 rounded-2xl flex items-center justify-center">
+                    🍬
+                </div>
+                <div>
+                    <span class="text-xs font-bold uppercase text-candyPink tracking-wider">Personalize do seu jeito</span>
+                    <h3 id="modalProductName" class="text-xl font-bold font-title text-gray-800">Nome do Doce</h3>
+                    <p id="modalProductPrice" class="text-candyPurple font-bold text-sm">R$ 0,00</p>
+                </div>
+            </div>
+
+            <!-- Custom Options Form -->
+            <div class="space-y-4 my-6 text-sm">
+                <!-- Flavor Coating -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1.5 font-title">1. Escolha a Cobertura Extra:</label>
+                    <select id="coatingSelect" class="w-full p-2.5 border-2 border-pink-200 rounded-xl focus:border-candyPink focus:outline-none">
+                        <option value="Sem Cobertura Extra">Sem Cobertura Extra (Original)</option>
+                        <option value="Calda de Chocolate Belga (+R$ 3,00)">Calda de Chocolate Belga (+R$ 3,00)</option>
+                        <option value="Ninho com Nutella (+R$ 4,50)">Ninho com Nutella (+R$ 4,50)</option>
+                        <option value="Calda Azedinha de Morango (+R$ 2,50)">Calda Azedinha de Morango (+R$ 2,50)</option>
+                    </select>
+                </div>
+
+                <!-- Sprinkles / Toppings -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1.5 font-title">2. Confeitos Especiais:</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
+                            <input type="checkbox" value="Granulado Colorido" class="topping-option accent-candyPink">
+                            <span class="text-xs font-medium">Granulado Colorido</span>
+                        </label>
+                        <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
+                            <input type="checkbox" value="Choco-Balls Crocantes" class="topping-option accent-candyPink">
+                            <span class="text-xs font-medium">Choco-Balls</span>
+                        </label>
+                        <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
+                            <input type="checkbox" value="Glitter Comestível" class="topping-option accent-candyPink">
+                            <span class="text-xs font-medium">Glitter Comestível ✨</span>
+                        </label>
+                        <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
+                            <input type="checkbox" value="Marshmallow Mini" class="topping-option accent-candyPink">
+                            <span class="text-xs font-medium">Mini Marshmallows</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Packaging -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1.5 font-title">3. Embalagem de Presente:</label>
+                    <select id="packageSelect" class="w-full p-2.5 border-2 border-pink-200 rounded-xl focus:border-candyPink focus:outline-none">
+                        <option value="Embalagem Padrão CandyLand">Embalagem Padrão CandyLand (Grátis)</option>
+                        <option value="Caixa de Presente Laço Rosa (+R$ 5,00)">Caixa de Presente com Laço Rosa (+R$ 5,00)</option>
+                        <option value="Pote de Vidro Mágico (+R$ 8,00)">Pote de Vidro Mágico Reutilizável (+R$ 8,00)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="addCustomizedToCartBtn" class="w-full bg-candyPink text-white font-bold py-3 rounded-2xl hover:bg-pink-600 transition-colors flex items-center justify-center gap-2 shadow-md">
+                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                <span>Adicionar Doce Personalizado</span>
+            </button>
+
+        </div>
+    </div>
+
+    <div id="orderSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center shadow-2xl border-4 border-candyGreen transform animate-bounce-short">
+            <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
+                🎉
+            </div>
+            <h2 class="text-2xl font-bold font-title text-gray-800">Pedido Confirmado!</h2>
+            <p class="text-gray-600 text-sm mt-2">
+                Seus doces já estão sendo preparados com muito carinho e amor pela nossa equipe de duendes confeiteiros! 🍬✨
+            </p>
+            <div class="bg-pink-50 p-4 rounded-2xl mt-4 text-left space-y-1.5 text-xs text-gray-600 border border-pink-100">
+                <p><strong>Número do Pedido:</strong> #CANDY-<span id="orderNumber">8492</span></p>
+                <p><strong>Tempo estimado de entrega:</strong> 30 - 45 minutos</p>
+                <p><strong>Status:</strong> Em produção saborosa</p>
+            </div>
+            <button id="closeSuccessBtn" class="mt-6 w-full bg-candyGreen hover:bg-emerald-600 text-white font-bold py-3 rounded-2xl transition-all shadow-md">
+                Continuar Adoçando a Vida
+            </button>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t-4 border-pink-100 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex justify-center items-center gap-2 mb-3">
+                <span class="text-2xl">🍭</span>
+                <span class="font-title font-bold text-xl text-candyPink">CandyLand</span>
+            </div>
+            <p class="text-xs text-gray-500 max-w-md mx-auto">
+                O site mais doce da internet. Produzido com paixão para espalhar alegria e doçura por onde passar.
+            </p>
+            <p class="text-xs text-pink-400 mt-4 font-semibold">
+                © 2026 CandyLand - Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. PRODUCT DATABASE ---
+        const PRODUCTS = [
+            {
+                id: 1,
+                name: "Gummies Ursinhos Mágicos",
+                category: "Gomas & Balas",
+                price: 12.90,
+                rating: 4.9,
+                reviews: 128,
+                image: "🧸",
+                bgColor: "bg-pink-100",
+                badge: "Mais Vendido",
+                tags: { sugarFree: false, vegan: true, sour: false, crunchy: false }
+            },
+            {
+                id: 2,
+                name: "Barra de Chocolate Ao Leite Belga",
+                category: "Chocolates",
+                price: 24.50,
+                rating: 5.0,
+                reviews: 94,
+                image: "🍫",
+                bgColor: "bg-amber-100",
+                badge: "Premium",
+                tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+            },
+            {
+                id: 3,
+                name: "Caramelo Salgado Macio",
+                category: "Caramelos",
+                price: 18.00,
+                rating: 4.7,
+                reviews: 67,
+                image: "🍬",
+                bgColor: "bg-orange-100",
+                badge: "Artesanal",
+                tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+            },
+            {
+                id: 4,
+                name: "Pirulito Galáxia Neon",
+                category: "Pirulitos",
+                price: 8.50,
+                rating: 4.8,
+                reviews: 210,
+                image: "🍭",
+                bgColor: "bg-purple-100",
+                badge: "Novo",
+                tags: { sugarFree: false, vegan: true, sour: true, crunchy: true }
+            },
+            {
+                id: 5,
+                name: "Marshmallows Nuvem Arco-Íris",
+                category: "Marshmallows",
+                price: 15.90,
+                rating: 4.6,
+                reviews: 82,
+                image: "☁️",
+                bgColor: "bg-blue-100",
+                badge: "Super Macio",
+                tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+            },
+            {
+                id: 6,
+                name: "Brigadeiro Gourmet de Pistache",
+                category: "Doces Tradicionais",
+                price: 6.00,
+                rating: 5.0,
+                reviews: 156,
+                image: "🧁",
+                bgColor: "bg-green-100",
+                badge: "Favorito",
+                tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+            },
+            {
+                id: 7,
+                name: "Balas Azedinhas de Maçã Verde",
+                category: "Gomas & Balas",
+                price: 9.90,
+                rating: 4.5,
+                reviews: 43,
+                image: "🍏",
+                bgColor: "bg-emerald-100",
+                badge: "Azedinho",
+                tags: { sugarFree: true, vegan: true, sour: true, crunchy: false }
+            },
+            {
+                id: 8,
+                name: "Bombom de Morango com Chocolate Zero",
+                category: "Chocolates",
+                price: 29.90,
+                rating: 4.9,
+                reviews: 75,
+                image: "🍓",
+                bgColor: "bg-rose-100",
+                badge: "Zero Açúcar",
+                tags: { sugarFree: true, vegan: false, sour: false, crunchy: false }
+            },
+            {
+                id: 9,
+                name: "Torta Tartalete de Limão",
+                category: "Doces Tradicionais",
+                price: 14.00,
+                rating: 4.8,
+                reviews: 89,
+                image: "🍋",
+                bgColor: "bg-yellow-100",
+                badge: "Refrescante",
+                tags: { sugarFree: false, vegan: false, sour: true, crunchy: true }
+            }
+        ];
+
+        const CATEGORIES = [
+            "Todos",
+            "Chocolates",
+            "Gomas & Balas",
+            "Caramelos",
+            "Pirulitos",
+            "Marshmallows",
+            "Doces Tradicionais"
+        ];
+
+        // --- 2. STATE MANAGEMENT ---
+        let selectedCategory = "Todos";
+        let maxPrice = 50;
+        let searchQuery = "";
+        let selectedAttributes = [];
+        let sortBy = "popular";
+        let cart = [];
+        let customizingProduct = null;
+
+        // --- 3. DOM ELEMENTS ---
+        const productsGrid = document.getElementById('productsGrid');
+        const emptyState = document.getElementById('emptyState');
+        const resultsCount = document.getElementById('resultsCount');
+        const categoryFiltersContainer = document.getElementById('categoryFilters');
+        const priceRange = document.getElementById('priceRange');
+        const priceValueDisplay = document.getElementById('priceValueDisplay');
+        const searchInput = document.getElementById('searchInput');
+        const searchInputMobile = document.getElementById('searchInputMobile');
+        const sortSelect = document.getElementById('sortSelect');
+        const resetFiltersBtn = document.getElementById('resetFilters');
+        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+        
+        // Cart elements
+        const cartBtn = document.getElementById('cartBtn');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartBackdrop = document.getElementById('cartBackdrop');
+        const cartPanel = document.getElementById('cartPanel');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartBadge = document.getElementById('cartBadge');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        // Modal Elements
+        const customizeModal = document.getElementById('customizeModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalProductName = document.getElementById('modalProductName');
+        const modalProductPrice = document.getElementById('modalProductPrice');
+        const modalImage = document.getElementById('modalImage');
+        const addCustomizedToCartBtn = document.getElementById('addCustomizedToCartBtn');
+
+        // Success Modal Elements
+        const orderSuccessModal = document.getElementById('orderSuccessModal');
+        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+        const orderNumber = document.getElementById('orderNumber');
+
+        // --- 4. INITIALIZATION ---
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategories();
+            renderProducts();
+            setupEventListeners();
+            lucide.createIcons();
+        });
+
+        // --- 5. RENDER FUNCTIONS ---
+        function renderCategories() {
+            categoryFiltersContainer.innerHTML = CATEGORIES.map(cat => {
+                const isActive = cat === selectedCategory;
+                return `
+                    <button data-category="${cat}" 
+                        class="category-btn w-full text-left px-3 py-2 rounded-2xl text-sm font-semibold transition-all flex items-center justify-between ${
+                            isActive 
+                                ? 'bg-candyPink text-white shadow-md' 
+                                : 'text-gray-600 hover:bg-pink-50 hover:text-candyPink'
+                        }">
+                        <span>${cat}</span>
+                        ${isActive ? '<i data-lucide="chevron-right" class="w-4 h-4"></i>' : ''}
+                    </button>
+                `;
+            }).join('');
+            
+            // Re-bind Lucide icons
+            lucide.createIcons();
+        }
+
+        function getFilteredProducts() {
+            return PRODUCTS.filter(p => {
+                // Category match
+                const matchCategory = selectedCategory === "Todos" || p.category === selectedCategory;
+                
+                // Price match
+                const matchPrice = p.price <= maxPrice;
+
+                // Search Query
+                const matchQuery = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                   p.category.toLowerCase().includes(searchQuery.toLowerCase());
+
+                // Attribute checkboxes
+                const matchAttributes = selectedAttributes.every(attr => p.tags[attr] === true);
+
+                return matchCategory && matchPrice && matchQuery && matchAttributes;
+            }).sort((a, b) => {
+                if (sortBy === 'priceLow') return a.price - b.price;
+                if (sortBy === 'priceHigh') return b.price - a.price;
+                if (sortBy === 'nameAZ') return a.name.localeCompare(b.name);
+                return b.rating - a.rating; // default: popular
+            });
+        }
+
+        function renderProducts() {
+            const filtered = getFilteredProducts();
+            resultsCount.textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                productsGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            productsGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+
+            productsGrid.innerHTML = filtered.map(p => `
+                <div class="bg-white rounded-3xl p-5 border-2 border-pink-100 candy-shadow-hover flex flex-col justify-between relative group">
+                    
+                    <!-- Badge -->
+                    <span class="absolute top-4 left-4 bg-candyYellow text-pink-900 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm z-10">
+                        ${p.badge}
+                    </span>
+
+                    <!-- Main Candy Visual -->
+                    <div>
+                        <div class="${p.bgColor} rounded-2xl h-44 flex items-center justify-center text-7xl mb-4 group-hover:scale-105 transition-transform duration-300 relative overflow-hidden">
+                            <span class="drop-shadow-md">${p.image}</span>
+                        </div>
+
+                        <!-- Category & Rating -->
+                        <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
+                            <span>${p.category}</span>
+                            <div class="flex items-center gap-1 text-amber-400 font-bold">
+                                <span>⭐ ${p.rating.toFixed(1)}</span>
+                                <span class="text-gray-300">(${p.reviews})</span>
+                            </div>
+                        </div>
+
+                        <!-- Product Name -->
+                        <h3 class="font-bold text-gray-800 text-base font-title mb-2 line-clamp-1 group-hover:text-candyPink transition-colors">
+                            ${p.name}
+                        </h3>
+                    </div>
+
+                    <!-- Price & Actions -->
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <div class="flex items-center justify-between mb-3">
+                            <div>
+                                <span class="text-xs text-gray-400 block">Preço</span>
+                                <span class="text-xl font-black text-candyPurple font-title">
+                                    R$ ${p.price.toFixed(2).replace('.', ',')}
+                                </span>
+                            </div>
+
+                            <!-- Customize Button -->
+                            <button onclick="openCustomizeModal(${p.id})" 
+                                class="text-xs font-bold text-candyPink hover:text-pink-700 bg-pink-50 hover:bg-pink-100 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1">
+                                <span>✨ Personalizar</span>
+                            </button>
+                        </div>
+
+                        <!-- Direct Add Button -->
+                        <button onclick="addToCart(${p.id})" 
+                            class="w-full bg-candyPink hover:bg-pink-600 text-white font-bold py-2.5 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Adicionar ao Carrinho</span>
+                        </button>
+                    </div>
+
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // --- 6. CART SYSTEM ---
+        function addToCart(productId, customDetails = null) {
+            const product = PRODUCTS.find(p => p.id === productId);
+            if (!product) return;
+
+            if (customDetails) {
+                // Unique custom item
+                cart.push({
+                    cartItemId: Date.now(),
+                    ...product,
+                    price: customDetails.finalPrice,
+                    name: `${product.name} (Custom)`,
+                    customDetails,
+                    quantity: 1
+                });
+            } else {
+                // Standard item aggregation
+                const existingIndex = cart.findIndex(item => item.id === productId && !item.customDetails);
+                if (existingIndex > -1) {
+                    cart[existingIndex].quantity += 1;
+                } else {
+                    cart.push({
+                        cartItemId: Date.now(),
+                        ...product,
+                        quantity: 1
+                    });
+                }
+            }
+
+            updateCartUI();
+            openCart();
+        }
+
+        function updateCartQuantity(cartItemId, delta) {
+            const itemIndex = cart.findIndex(item => item.cartItemId === cartItemId);
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += delta;
+                if (cart[itemIndex].quantity <= 0) {
+                    cart.splice(itemIndex, 1);                }
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            // Count total items
+            const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            cartBadge.textContent = totalCount;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <div class="text-5xl mb-3">🛒</div>
+                        <p class="font-bold font-title text-gray-600">Seu carrinho está vazio</p>
+                        <p class="text-xs mt-1">Adicione doces deliciosos para começar!</p>
+                    </div>
+                `;
+                cartSubtotal.textContent = "R$ 0,00";
+                cartTotal.textContent = "R$ 0,00";
+                checkoutBtn.disabled = true;
+                checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            checkoutBtn.disabled = false;
+            checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+            const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+            cartSubtotal.textContent = `R$ ${totalAmount.toFixed(2).replace('.', ',')}`;
+            cartTotal.textContent = `R$ ${totalAmount.toFixed(2).replace('.', ',')}`;
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="flex items-center gap-3 bg-pink-50/50 p-3 rounded-2xl border border-pink-100">
+                    <div class="${item.bgColor || 'bg-pink-100'} text-3xl w-14 h-14 rounded-xl flex items-center justify-center shrink-0">
+                        ${item.image}
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-bold text-gray-800 text-sm truncate font-title">${item.name}</h4>
+                        ${item.customDetails ? `
+                            <p class="text-[10px] text-pink-500 truncate">${item.customDetails.summary}</p>
+                        ` : ''}
+                        <span class="text-xs font-bold text-candyPurple">
+                            R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}
+                        </span>
+                    </div>
+
+                    <!-- Quantity controls -->
+                    <div class="flex items-center gap-1 bg-white border border-pink-200 rounded-xl p-1">
+                        <button onclick="updateCartQuantity(${item.cartItemId}, -1)" class="p-1 hover:bg-pink-100 rounded-lg text-gray-600">
+                            <i data-lucide="minus" class="w-3 h-3"></i>
+                        </button>
+                        <span class="text-xs font-bold px-1.5">${item.quantity}</span>
+                        <button onclick="updateCartQuantity(${item.cartItemId}, 1)" class="p-1 hover:bg-pink-100 rounded-lg text-gray-600">
+                            <i data-lucide="plus" class="w-3 h-3"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        function openCart() {
+            cartDrawer.classList.remove('pointer-events-none');
+            cartBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            cartPanel.classList.remove('translate-x-full');
+        }
+
+        function closeCart() {
+            cartBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            cartPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+                cartDrawer.classList.add('pointer-events-none');
+            }, 300);
+        }
+
+        // --- 7. CUSTOMIZATION MODAL ---
+        function openCustomizeModal(productId) {
+            customizingProduct = PRODUCTS.find(p => p.id === productId);
+            if (!customizingProduct) return;
+
+            modalProductName.textContent = customizingProduct.name;
+            modalProductPrice.textContent = `Preço Base: R$ ${customizingProduct.price.toFixed(2).replace('.', ',')}`;
+            modalImage.textContent = customizingProduct.image;
+
+            customizeModal.classList.remove('opacity-0', 'pointer-events-none');
+            customizeModal.firstElementChild.classList.remove('scale-95');
+            customizeModal.firstElementChild.classList.add('scale-100');
+        }
+
+        function closeCustomizeModal() {
+            customizeModal.classList.add('opacity-0', 'pointer-events-none');
+            customizeModal.firstElementChild.classList.remove('scale-100');
+            customizeModal.firstElementChild.classList.add('scale-95');
+            customizingProduct = null;
+        }
+
+        // --- 8. EVENT LISTENERS ---
+        function setupEventListeners() {
+            // Category Click Handler
+            categoryFiltersContainer.addEventListener('click', (e) => {
+                const btn = e.target.closest('.category-btn');
+                if (!btn) return;
+                selectedCategory = btn.dataset.category;
+                renderCategories();
+                renderProducts();
+            });
+
+            // Price Range Slider
+            priceRange.addEventListener('input', (e) => {
+                maxPrice = parseFloat(e.target.value);
+                priceValueDisplay.textContent = `R$ ${maxPrice.toFixed(2).replace('.', ',')}`;
+                renderProducts();
+            });
+
+            // Search Inputs
+            const handleSearch = (e) => {
+                searchQuery = e.target.value;
+                // Sync inputs
+                if (e.target === searchInput) searchInputMobile.value = searchQuery;
+                else searchInput.value = searchQuery;
+                renderProducts();
+            };
+            searchInput.addEventListener('input', handleSearch);
+            searchInputMobile.addEventListener('input', handleSearch);
+
+            // Attribute Checkboxes
+            document.querySelectorAll('.attribute-filter').forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    selectedAttributes = Array.from(document.querySelectorAll('.attribute-filter:checked'))
+                        .map(cb => cb.value);
+                    renderProducts();
+                });
+            });
+
+            // Sort Select
+            sortSelect.addEventListener('change', (e) => {
+                sortBy = e.target.value;
+                renderProducts();
+            });
+
+            // Reset Filters
+            const resetAll = () => {
+                selectedCategory = "Todos";
+                maxPrice = 50;
+                searchQuery = "";
+                selectedAttributes = [];
+                sortBy = "popular";
+                
+                priceRange.value = 50;
+                priceValueDisplay.textContent = "R$ 50,00";
+                searchInput.value = "";
+                searchInputMobile.value = "";
+                sortSelect.value = "popular";
+                document.querySelectorAll('.attribute-filter').forEach(cb => cb.checked = false);
+
+                renderCategories();
+                renderProducts();
+            };
+
+            resetFiltersBtn.addEventListener('click', resetAll);
+            clearFiltersBtn.addEventListener('click', resetAll);
+
+            // Cart Panel Open/Close
+            cartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartBackdrop.addEventListener('click', closeCart);
+
+            // Modal Close
+            closeModalBtn.addEventListener('click', closeCustomizeModal);
+
+            // Add Customized to Cart
+            addCustomizedToCartBtn.addEventListener('click', () => {
+                if (!customizingProduct) return;
+
+                const coating = document.getElementById('coatingSelect').value;
+                const pkg = document.getElementById('packageSelect').value;
+                const toppings = Array.from(document.querySelectorAll('.topping-option:checked')).map(c => c.value);
+
+                let extraCost = 0;
+                if (coating.includes('3,00')) extraCost += 3.00;
+                if (coating.includes('4,50')) extraCost += 4.50;
+                if (coating.includes('2,50')) extraCost += 2.50;
+
+                if (pkg.includes('5,00')) extraCost += 5.00;
+                if (pkg.includes('8,00')) extraCost += 8.00;
+
+                extraCost += toppings.length * 1.50; // R$ 1,50 per topping
+
+                const finalPrice = customizingProduct.price + extraCost;
+                const summary = `${coating} | ${toppings.join(', ') || 'Sem confeitos'} | ${pkg}`;
+
+                addToCart(customizingProduct.id, {
+                    finalPrice,
+                    summary
+                });
+
+                closeCustomizeModal();
+            });
+
+            // Checkout Event & Confetti
+            checkoutBtn.addEventListener('click', () => {
+                if (cart.length === 0) return;
+
+                // Close Cart
+                closeCart();
+
+                // Trigger confetti animation
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: { y: 0.6 }
+                    });
+                }
+
+                // Show Success Modal
+                orderNumber.textContent = Math.floor(1000 + Math.random() * 9000);
+                orderSuccessModal.classList.remove('hidden');
+
+                // Clear Cart
+                cart = [];
+                updateCartUI();
+            });
+
+            closeSuccessBtn.addEventListener('click', () => {
+                orderSuccessModal.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
