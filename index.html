@@ -126,6 +126,10 @@
                         <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-candyPink w-5 h-5"></i>
                     </div>
                 </div>
+                    <a href="#sobre-nos"
+                       class="hidden md:inline-block text-candyPink font-bold hover:text-candyPurple transition">
+                                Sobre Nós
+                        </a>
 
                 <!-- Actions / Cart Button -->
                 <div class="flex items-center gap-3">
@@ -456,118 +460,366 @@
             </p>
         </div>
     </footer>
-
+        <!-- SOBRE NÓS -->
+            <section id="sobre-nos"
+                class="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50 py-16 px-4">
+                <div class="absolute -top-8 left-8 text-5xl opacity-20 pointer-events-none">
+                    🍬
+                </div>
+             <div class="absolute bottom-8 right-8 text-5xl opacity-20 pointer-events-none">
+                    🍭
+                </div>
+                <div class="max-w-6xl mx-auto relative z-10">
+                    <!-- Título e apresentação -->
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="inline-block bg-pink-100 text-candyPink px-4 py-2 rounded-full text-sm font-bold mb-4">
+                            💖 Um pouquinho da nossa história
+                        </span>
+                        <h2 class="text-4xl sm:text-5xl font-black font-title text-gray-800 mb-5">
+                            Sobre a <span class="text-candyPink">CandyLand</span>
+                        </h2>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                            A CandyLand nasceu para deixar os momentos do dia a dia mais doces,
+                            coloridos e especiais. Somos apaixonados pelo universo dos doces
+                            e acreditamos que uma pequena guloseima pode transformar um momento
+                            simples em uma lembrança feliz.
+                        </p>
+                    </div>
+                    <!-- Nossa missão e valores -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-12">
+                        <!-- Nossa missão -->
+                        <div class="bg-white rounded-3xl p-7 sm:p-9 border-2 border-pink-100 candy-shadow">
+                            <h3 class="text-2xl font-bold font-title text-candyPurple mb-4">
+                                Nossa missão 🍭
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed mb-5">
+                                Queremos tornar a experiência de escolher doces fácil,
+                                divertida e cheia de sabor. Por isso, reunimos opções variadas
+                                e oferecemos a possibilidade de personalizar alguns produtos
+                                para deixar cada pedido com a sua cara.
+                            </p>
+                            <h3 class="text-2xl font-bold font-title text-candyPurple mb-3">
+                                O que nos inspira? ✨
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                A alegria de compartilhar, a criatividade e os pequenos
+                                momentos que ficam ainda melhores quando acompanhados
+                                de algo gostoso.
+                            </p>
+                        </div>
+                        <!-- Cards de valores -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Carinho -->
+                            <div class="bg-white rounded-3xl p-6 text-center border-2 border-pink-100 candy-shadow-hover">
+                                <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center text-3xl mx-auto mb-4">
+                                    💗
+                                </div>
+                                <h3 class="font-bold font-title text-lg text-gray-800 mb-2">
+                                    Carinho
+                                </h3>
+                                <p class="text-sm text-gray-500 leading-relaxed">
+                                    Cada detalhe é pensado para deixar sua experiência
+                                    mais agradável.
+                                </p>
+                            </div>
+                            <!-- Variedade -->
+                            <div class="bg-white rounded-3xl p-6 text-center border-2 border-purple-100 candy-shadow-hover">
+                                <div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center text-3xl mx-auto mb-4">
+                                    🌈
+                                </div>
+                                <h3 class="font-bold font-title text-lg text-gray-800 mb-2">
+                                    Variedade
+                                </h3>
+                                <p class="text-sm text-gray-500 leading-relaxed">
+                                    Diferentes sabores e opções para descobrir seu próximo
+                                    doce favorito.
+                                </p>
+                            </div>
+                            <!-- Alegria -->
+                            <div class="bg-white rounded-3xl p-6 text-center border-2 border-yellow-100 candy-shadow-hover sm:col-span-2">
+                                <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center text-3xl mx-auto mb-4">
+                                    🎉
+                                </div>
+                                <h3 class="font-bold font-title text-lg text-gray-800 mb-2">
+                                    Alegria em cada pedido
+                                </h3>
+                                <p class="text-sm text-gray-500 leading-relaxed">
+                                    Acreditamos que doces combinam com comemorações,
+                                    encontros e momentos especiais.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- botão para voltar ao catálogo -->
+                    <div class="text-center mt-12">
+                        <p class="text-gray-600 mb-5">
+                            Que tal encontrar algo delicioso para adoçar o seu dia?
+                        </p>
+                        <a href="#catalogo"
+                            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-candyPink to-candyPurple text-white font-bold px-7 py-3 rounded-full shadow-lg hover:opacity-90 active:scale-95 transition-all">
+                            Conheça nossos doces
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+            </section>
     <script>
         // --- 1. PRODUCT DATABASE ---
         const PRODUCTS = [
-            {
-                id: 1,
-                name: "Gummies Ursinhos Mágicos",
-                category: "Gomas & Balas",
-                price: 12.90,
-                rating: 4.9,
-                reviews: 128,
-                image: "🧸",
-                bgColor: "bg-pink-100",
-                badge: "Mais Vendido",
-                tags: { sugarFree: false, vegan: true, sour: false, crunchy: false }
-            },
-            {
-                id: 2,
-                name: "Barra de Chocolate Ao Leite Belga",
-                category: "Chocolates",
-                price: 24.50,
-                rating: 5.0,
-                reviews: 94,
-                image: "🍫",
-                bgColor: "bg-amber-100",
-                badge: "Premium",
-                tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
-            },
-            {
-                id: 3,
-                name: "Caramelo Salgado Macio",
-                category: "Caramelos",
-                price: 18.00,
-                rating: 4.7,
-                reviews: 67,
-                image: "🍬",
-                bgColor: "bg-orange-100",
-                badge: "Artesanal",
-                tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
-            },
-            {
-                id: 4,
-                name: "Pirulito Galáxia Neon",
-                category: "Pirulitos",
-                price: 8.50,
-                rating: 4.8,
-                reviews: 210,
-                image: "🍭",
-                bgColor: "bg-purple-100",
-                badge: "Novo",
-                tags: { sugarFree: false, vegan: true, sour: true, crunchy: true }
-            },
-            {
-                id: 5,
-                name: "Marshmallows Nuvem Arco-Íris",
-                category: "Marshmallows",
-                price: 15.90,
-                rating: 4.6,
-                reviews: 82,
-                image: "☁️",
-                bgColor: "bg-blue-100",
-                badge: "Super Macio",
-                tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
-            },
-            {
-                id: 6,
-                name: "Brigadeiro Gourmet de Pistache",
-                category: "Doces Tradicionais",
-                price: 6.00,
-                rating: 5.0,
-                reviews: 156,
-                image: "🧁",
-                bgColor: "bg-green-100",
-                badge: "Favorito",
-                tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
-            },
-            {
-                id: 7,
-                name: "Balas Azedinhas de Maçã Verde",
-                category: "Gomas & Balas",
-                price: 9.90,
-                rating: 4.5,
-                reviews: 43,
-                image: "🍏",
-                bgColor: "bg-emerald-100",
-                badge: "Azedinho",
-                tags: { sugarFree: true, vegan: true, sour: true, crunchy: false }
-            },
-            {
-                id: 8,
-                name: "Bombom de Morango com Chocolate Zero",
-                category: "Chocolates",
-                price: 29.90,
-                rating: 4.9,
-                reviews: 75,
-                image: "🍓",
-                bgColor: "bg-rose-100",
-                badge: "Zero Açúcar",
-                tags: { sugarFree: true, vegan: false, sour: false, crunchy: false }
-            },
-            {
-                id: 9,
-                name: "Torta Tartalete de Limão",
-                category: "Doces Tradicionais",
-                price: 14.00,
-                rating: 4.8,
-                reviews: 89,
-                image: "🍋",
-                bgColor: "bg-yellow-100",
-                badge: "Refrescante",
-                tags: { sugarFree: false, vegan: false, sour: true, crunchy: true }
-            }
+          
+[
+    {
+        id: 1,
+        name: "Gummies Ursinhos Mágicos",
+        category: "Gomas & Balas",
+        price: 12.90,
+        rating: 4.9,
+        reviews: 128,
+        image: "https://loremflickr.com/600/600/gummy,bears?lock=1",
+        bgColor: "bg-pink-100",
+        badge: "Mais Vendido",
+        tags: { sugarFree: false, vegan: true, sour: false, crunchy: false }
+    },
+    {
+        id: 2,
+        name: "Barra de Chocolate Ao Leite Belga",
+        category: "Chocolates",
+        price: 24.50,
+        rating: 5.0,
+        reviews: 94,
+        image: "https://loremflickr.com/600/600/milk,chocolate,bar?lock=2",
+        bgColor: "bg-amber-100",
+        badge: "Premium",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 3,
+        name: "Caramelo Salgado Macio",
+        category: "Caramelos",
+        price: 18.00,
+        rating: 4.7,
+        reviews: 67,
+        image: "https://loremflickr.com/600/600/salted,caramel,candy?lock=3",
+        bgColor: "bg-orange-100",
+        badge: "Artesanal",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 4,
+        name: "Pirulito Galáxia Neon",
+        category: "Pirulitos",
+        price: 8.50,
+        rating: 4.8,
+        reviews: 210,
+        image: "https://loremflickr.com/600/600/colorful,lollipop?lock=4",
+        bgColor: "bg-purple-100",
+        badge: "Novo",
+        tags: { sugarFree: false, vegan: true, sour: true, crunchy: true }
+    },
+    {
+        id: 5,
+        name: "Marshmallows Nuvem Arco-Íris",
+        category: "Marshmallows",
+        price: 15.90,
+        rating: 4.6,
+        reviews: 82,
+        image: "https://loremflickr.com/600/600/marshmallows?lock=5",
+        bgColor: "bg-blue-100",
+        badge: "Super Macio",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 6,
+        name: "Brigadeiro Gourmet de Pistache",
+        category: "Doces Tradicionais",
+        price: 6.00,
+        rating: 5.0,
+        reviews: 156,
+        image: "https://loremflickr.com/600/600/pistachio,brigadeiro?lock=6",
+        bgColor: "bg-green-100",
+        badge: "Favorito",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 7,
+        name: "Balas Azedinhas de Maçã Verde",
+        category: "Gomas & Balas",
+        price: 9.90,
+        rating: 4.5,
+        reviews: 43,
+        image: "https://loremflickr.com/600/600/green,apple,candy?lock=7",
+        bgColor: "bg-emerald-100",
+        badge: "Azedinho",
+        tags: { sugarFree: true, vegan: true, sour: true, crunchy: false }
+    },
+    {
+        id: 8,
+        name: "Bombom de Morango com Chocolate Zero",
+        category: "Chocolates",
+        price: 29.90,
+        rating: 4.9,
+        reviews: 75,
+        image: "https://loremflickr.com/600/600/strawberry,chocolate,bonbon?lock=8",
+        bgColor: "bg-rose-100",
+        badge: "Zero Açúcar",
+        tags: { sugarFree: true, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 9,
+        name: "Torta Tartalete de Limão",
+        category: "Doces Tradicionais",
+        price: 14.00,
+        rating: 4.8,
+        reviews: 89,
+        image: "https://loremflickr.com/600/600/lemon,tart?lock=9",
+        bgColor: "bg-yellow-100",
+        badge: "Refrescante",
+        tags: { sugarFree: false, vegan: false, sour: true, crunchy: true }
+    },
+    {
+        id: 10,
+        name: "Donuts Cobertos com Chocolate",
+        category: "Doces Tradicionais",
+        price: 12.90,
+        rating: 4.9,
+        reviews: 96,
+        image: "https://loremflickr.com/600/600/chocolate,donuts?lock=10",
+        bgColor: "bg-pink-100",
+        badge: "Delícia",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 11,
+        name: "Cupcake de Baunilha",
+        category: "Bolos & Cupcakes",
+        price: 9.50,
+        rating: 4.8,
+        reviews: 74,
+        image: "https://loremflickr.com/600/600/vanilla,cupcake?lock=11",
+        bgColor: "bg-purple-100",
+        badge: "Fofo e Delicioso",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 12,
+        name: "Cookies com Gotas de Chocolate",
+        category: "Biscoitos",
+        price: 8.90,
+        rating: 4.9,
+        reviews: 132,
+        image: "https://loremflickr.com/600/600/chocolate,chip,cookies?lock=12",
+        bgColor: "bg-amber-100",
+        badge: "Mais Pedidos",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 13,
+        name: "Macarons Franceses",
+        category: "Doces Finos",
+        price: 19.90,
+        rating: 4.7,
+        reviews: 61,
+        image: "https://loremflickr.com/600/600/french,macarons?lock=13",
+        bgColor: "bg-rose-100",
+        badge: "Elegante",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 14,
+        name: "Alfajor Recheado com Doce de Leite",
+        category: "Biscoitos",
+        price: 10.00,
+        rating: 4.9,
+        reviews: 105,
+        image: "https://loremflickr.com/600/600/alfajor,dulce,de,leche?lock=14",
+        bgColor: "bg-yellow-100",
+        badge: "Tradicional",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 15,
+        name: "Waffle com Calda de Chocolate",
+        category: "Sobremesas",
+        price: 17.90,
+        rating: 4.8,
+        reviews: 83,
+        image: "https://loremflickr.com/600/600/chocolate,waffle?lock=15",
+        bgColor: "bg-orange-100",
+        badge: "Irresistível",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 16,
+        name: "Pipoca Doce Caramelizada",
+        category: "Snacks Doces",
+        price: 7.90,
+        rating: 4.6,
+        reviews: 57,
+        image: "https://loremflickr.com/600/600/caramel,popcorn?lock=16",
+        bgColor: "bg-yellow-100",
+        badge: "Crocante",
+        tags: { sugarFree: false, vegan: true, sour: false, crunchy: true }
+    },
+    {
+        id: 17,
+        name: "Biscoitos Recheados",
+        category: "Biscoitos",
+        price: 6.90,
+        rating: 4.7,
+        reviews: 89,
+        image: "https://loremflickr.com/600/600/filled,cookies?lock=17",
+        bgColor: "bg-orange-100",
+        badge: "Clássico",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 18,
+        name: "Gelatina Colorida",
+        category: "Sobremesas",
+        price: 5.90,
+        rating: 4.5,
+        reviews: 46,
+        image: "https://loremflickr.com/600/600/colorful,jelly,dessert?lock=18",
+        bgColor: "bg-fuchsia-100",
+        badge: "Divertido",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: false }
+    },
+    {
+        id: 19,
+        name: "Churros com Doce de Leite",
+        category: "Sobremesas",
+        price: 11.90,
+        rating: 4.9,
+        reviews: 118,
+        image: "https://loremflickr.com/600/600/churros,dulce,de,leche?lock=19",
+        bgColor: "bg-amber-100",
+        badge: "Favorito",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 20,
+        name: "Suspiros Açucarados",
+        category: "Doces Finos",
+        price: 8.50,
+        rating: 4.6,
+        reviews: 52,
+        image: "https://loremflickr.com/600/600/meringue,cookies?lock=20",
+        bgColor: "bg-sky-100",
+        badge: "Levinho",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    },
+    {
+        id: 21,
+        name: "Sorvete de Casquinha",
+        category: "Sorvetes",
+        price: 10.90,
+        rating: 4.8,
+        reviews: 141,
+        image: "https://loremflickr.com/600/600/ice,cream,cone?lock=21",
+        bgColor: "bg-cyan-100",
+        badge: "Refrescante",
+        tags: { sugarFree: false, vegan: false, sour: false, crunchy: true }
+    }
         ];
 
         const CATEGORIES = [
