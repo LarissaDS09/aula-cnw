@@ -3,54 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CandyShop 🍭 - O Mundo dos Doces Mágicos</title>
+
+    <title>CandyLand 🍭 - O Mundo dos Doces Mágicos</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        candyPink: '#FF6B9B',
-                        candyYellow: '#FFD93D',
-                        candyBlue: '#4D96FF',
-                        candyPurple: '#9B51E0',
-                        candyGreen: '#6BCB77',
-                        candyOrange: '#FF9F43',
-                        softBackground: '#FFF9F2'
+                        candyPink: "#FF6B9B",
+                        candyYellow: "#FFD93D",
+                        candyBlue: "#4D96FF",
+                        candyPurple: "#9B51E0",
+                        candyGreen: "#6BCB77",
+                        candyOrange: "#FF9F43",
+                        softBackground: "#FFF9F2"
                     },
+
                     fontFamily: {
-                        fredoka: ['Fredoka', 'sans-serif'],
-                        quicksand: ['Quicksand', 'sans-serif']
+                        fredoka: ["Fredoka", "sans-serif"],
+                        quicksand: ["Quicksand", "sans-serif"]
                     },
+
                     borderRadius: {
-                        '4xl': '2rem',
-                        '5xl': '2.5rem'
+                        "4xl": "2rem",
+                        "5xl": "2.5rem"
                     }
                 }
             }
-        }
+        };
     </script>
 
     <style>
         body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #FFF4F6;
+            font-family: "Quicksand", sans-serif;
+            background-color: #FFF9F2;
             color: #2D3436;
         }
 
-        h1, h2, h3, h4, .font-title {
-            font-family: 'Fredoka', sans-serif;
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-title {
+            font-family: "Fredoka", sans-serif;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(3deg); }
+            0%,
+            100% {
+                transform: translateY(0) rotate(0);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(3deg);
+            }
         }
 
         .animate-float {
@@ -61,17 +80,15 @@
             animation: float 4.5s ease-in-out 1.5s infinite;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            .animate-float, .animate-float-delayed { animation: none; }
-        }
-
         .custom-scrollbar::-webkit-scrollbar {
             width: 8px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #FFE8E8;
             border-radius: 10px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #FF6B9B;
             border-radius: 10px;
@@ -84,117 +101,184 @@
         .candy-shadow-hover {
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
         .candy-shadow-hover:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 30px -10px rgba(255, 107, 155, 0.35);
+
+            box-shadow:
+                0 20px 30px -10px rgba(255, 107, 155, 0.35);
         }
 
-        .line-clamp-1 {
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float,
+            .animate-float-delayed {
+                animation: none;
+            }
+
+            .candy-shadow-hover:hover {
+                transform: none;
+            }
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col bg-[#FFF9F2] selection:bg-candyPink selection:text-white">
 
-    <!-- HEADER -->
+    <!-- CABEÇALHO -->
     <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b-4 border-candyPink/20 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
             <div class="flex items-center justify-between gap-4">
 
-                <!-- Logo -->
                 <a href="#" class="flex items-center gap-2 group">
                     <div class="w-12 h-12 bg-gradient-to-tr from-candyPink to-candyYellow rounded-2xl flex items-center justify-center text-white text-2xl shadow-md group-hover:rotate-12 transition-transform">
                         🍬
                     </div>
+
                     <div>
                         <span class="text-2xl font-bold bg-gradient-to-r from-candyPink via-candyPurple to-candyBlue bg-clip-text text-transparent font-title">
                             CandyLand
                         </span>
-                        <span class="block text-xs text-pink-400 font-medium -mt-1">Mundo Mágico dos Doces</span>
+
+                        <span class="block text-xs text-pink-400 font-medium -mt-1">
+                            Mundo Mágico dos Doces
+                        </span>
                     </div>
                 </a>
 
-                <!-- Search Bar -->
                 <div class="flex-1 max-w-lg hidden sm:block relative">
-                    <div class="relative">
-                        <input type="text" id="searchInput"
-                            placeholder="Buscar chocolates, gomas, pirulitos e mais..."
-                            class="w-full pl-11 pr-4 py-3 rounded-full border-2 border-candyPink/30 focus:border-candyPink focus:outline-none bg-pink-50/50 text-gray-700 placeholder-pink-300 font-medium transition-all shadow-inner text-sm">
-                        <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 text-candyPink w-5 h-5"></i>
-                    </div>
+                    <input
+                        type="search"
+                        id="searchInput"
+                        aria-label="Buscar produtos"
+                        placeholder="Buscar chocolates, gomas, pirulitos e mais..."
+                        class="w-full pl-11 pr-4 py-3 rounded-full border-2 border-candyPink/30 focus:border-candyPink focus:outline-none bg-pink-50/50 text-gray-700 placeholder-pink-300 font-medium transition-all shadow-inner text-sm"
+                    >
+
+                    <i
+                        data-lucide="search"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 text-candyPink w-5 h-5"
+                    ></i>
                 </div>
 
-                <a href="#sobre-nos"
-                   class="hidden md:inline-block text-candyPink font-bold hover:text-candyPurple transition">
+                <a
+                    href="#sobre-nos"
+                    class="hidden md:inline-block text-candyPink font-bold hover:text-candyPurple transition"
+                >
                     Sobre Nós
                 </a>
 
-                <!-- Cart Button -->
-                <div class="flex items-center gap-3">
-                    <button id="cartBtn" class="relative bg-gradient-to-r from-candyPink to-candyPurple text-white px-5 py-2.5 rounded-full font-bold flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-lg hover:shadow-pink-300/50">
-                        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                        <span class="hidden md:inline">Meu Carrinho</span>
-                        <span id="cartBadge" class="bg-candyYellow text-pink-900 font-extrabold text-xs px-2 py-0.5 rounded-full shadow-inner min-w-[20px] text-center">
-                            0
-                        </span>
-                    </button>
-                </div>
+                <button
+                    id="cartBtn"
+                    class="relative bg-gradient-to-r from-candyPink to-candyPurple text-white px-5 py-2.5 rounded-full font-bold flex items-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-lg"
+                >
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+
+                    <span class="hidden md:inline">
+                        Meu Carrinho
+                    </span>
+
+                    <span
+                        id="cartBadge"
+                        class="bg-candyYellow text-pink-900 font-extrabold text-xs px-2 py-0.5 rounded-full shadow-inner min-w-[20px] text-center"
+                    >
+                        0
+                    </span>
+                </button>
             </div>
 
-            <!-- Mobile Search Bar -->
             <div class="mt-3 sm:hidden">
                 <div class="relative">
-                    <input type="text" id="searchInputMobile"
+                    <input
+                        type="search"
+                        id="searchInputMobile"
+                        aria-label="Buscar produtos pelo celular"
                         placeholder="Buscar doces no CandyLand..."
-                        class="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-candyPink/30 focus:border-candyPink focus:outline-none bg-pink-50/50 text-gray-700 placeholder-pink-300 font-medium text-sm">
-                    <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-candyPink w-4 h-4"></i>
+                        class="w-full pl-10 pr-4 py-2.5 rounded-full border-2 border-candyPink/30 focus:border-candyPink focus:outline-none bg-pink-50/50 text-gray-700 placeholder-pink-300 font-medium text-sm"
+                    >
+
+                    <i
+                        data-lucide="search"
+                        class="absolute left-3.5 top-1/2 -translate-y-1/2 text-candyPink w-4 h-4"
+                    ></i>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- BANNER PRINCIPAL -->
     <section class="relative overflow-hidden bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 text-white py-12 lg:py-16 px-4 mb-8">
-        <div class="absolute -top-10 left-10 text-6xl opacity-30 animate-float pointer-events-none">🍩</div>
-        <div class="absolute top-1/2 right-12 text-6xl opacity-30 animate-float-delayed pointer-events-none">🍭</div>
-        <div class="absolute bottom-4 left-1/3 text-5xl opacity-20 animate-float pointer-events-none">🧁</div>
+
+        <div class="absolute -top-10 left-10 text-6xl opacity-30 animate-float pointer-events-none">
+            🍩
+        </div>
+
+        <div class="absolute top-1/2 right-12 text-6xl opacity-30 animate-float-delayed pointer-events-none">
+            🍭
+        </div>
+
+        <div class="absolute bottom-4 left-1/3 text-5xl opacity-20 animate-float pointer-events-none">
+            🧁
+        </div>
 
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+
             <div class="text-center md:text-left max-w-xl">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-white/25 backdrop-blur-md text-yellow-200 text-xs font-bold uppercase tracking-wider mb-3">
                     ✨ Entregas para todo o Brasil
                 </span>
+
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black font-title leading-tight drop-shadow-md">
-                    Sua vida muito mais <span class="text-candyYellow">Doce</span> & Colorida!
+                    Sua vida muito mais
+                    <span class="text-candyYellow">Doce</span>
+                    & Colorida!
                 </h1>
+
                 <p class="mt-4 text-pink-100 text-base sm:text-lg font-medium">
-                    Explore nossa seleção artesanal de gomas, chocolates importados, caramelos cremosos e monte seu kit personalizado em minutos!
+                    Explore nossa seleção de gomas, chocolates, caramelos e
+                    sobremesas e monte seu kit personalizado em minutos!
                 </p>
-                <div class="mt-6 flex flex-wrap justify-center md:justify-start gap-3">
-                    <a href="#catalogo" class="bg-candyYellow hover:bg-yellow-300 text-pink-900 font-bold px-7 py-3 rounded-full shadow-lg hover:shadow-yellow-300/40 transition-all active:scale-95 flex items-center gap-2">
+
+                <div class="mt-6 flex justify-center md:justify-start">
+                    <a
+                        href="#catalogo"
+                        class="bg-candyYellow hover:bg-yellow-300 text-pink-900 font-bold px-7 py-3 rounded-full shadow-lg transition-all active:scale-95 flex items-center gap-2"
+                    >
                         <span>Explorar Sabores</span>
+
                         <i data-lucide="arrow-down" class="w-4 h-4"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- Banner Highlight Box -->
             <div class="relative w-full max-w-sm">
                 <div class="bg-white/90 backdrop-blur-md p-6 rounded-3xl text-gray-800 shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition-transform">
+
                     <div class="flex items-center gap-3 mb-3">
                         <span class="text-3xl">🎉</span>
+
                         <div>
-                            <h3 class="font-bold text-candyPink text-lg font-title">Oferta do Dia</h3>
-                            <p class="text-xs text-gray-500">Desconto especial em combos</p>
+                            <h3 class="font-bold text-candyPink text-lg font-title">
+                                Oferta do Dia
+                            </h3>
+
+                            <p class="text-xs text-gray-500">
+                                Desconto especial em combos
+                            </p>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-600 mb-4">Na compra de 3 produtos da categoria <strong>Gomas & Balas</strong>, ganhe frete grátis!</p>
+
+                    <p class="text-sm text-gray-600 mb-4">
+                        Na compra de 3 produtos da categoria
+                        <strong>Gomas & Balas</strong>,
+                        ganhe frete grátis!
+                    </p>
+
                     <div class="flex items-center justify-between text-xs font-bold text-purple-600 bg-purple-50 p-2.5 rounded-xl">
                         <span>Cupom: CANDY2026</span>
-                        <span class="bg-purple-200 px-2 py-0.5 rounded">Ativo</span>
+
+                        <span class="bg-purple-200 px-2 py-0.5 rounded">
+                            Ativo
+                        </span>
                     </div>
                 </div>
             </div>
@@ -202,78 +286,151 @@
     </section>
 
     <!-- CATÁLOGO -->
-    <main id="catalogo" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 scroll-mt-28">
-
+    <main
+        id="catalogo"
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 scroll-mt-28 w-full"
+    >
         <div class="flex flex-col lg:flex-row gap-8">
 
-            <!-- SIDEBAR -->
-            <aside class="w-full lg:w-72 shrink-0 space-y-6">
+            <!-- FILTROS -->
+            <aside class="w-full lg:w-72 shrink-0">
                 <div class="bg-white p-6 rounded-3xl shadow-md border-2 border-pink-100 lg:sticky lg:top-28">
 
                     <div class="flex items-center justify-between border-b pb-3 mb-4">
                         <h2 class="text-lg font-bold text-gray-800 font-title flex items-center gap-2">
-                            <i data-lucide="sliders-horizontal" class="w-5 h-5 text-candyPink"></i>
+                            <i
+                                data-lucide="sliders-horizontal"
+                                class="w-5 h-5 text-candyPink"
+                            ></i>
+
                             Filtros de Busca
                         </h2>
-                        <button id="resetFilters" class="text-xs text-pink-500 hover:text-pink-700 font-bold underline">
+
+                        <button
+                            id="resetFilters"
+                            class="text-xs text-pink-500 hover:text-pink-700 font-bold underline"
+                        >
                             Limpar
                         </button>
                     </div>
 
-                    <!-- Categorias -->
                     <div class="mb-6">
-                        <h3 class="font-bold text-sm text-gray-700 mb-3 font-title uppercase tracking-wider">Categorias</h3>
-                        <div class="space-y-2" id="categoryFilters"></div>
+                        <h3 class="font-bold text-sm text-gray-700 mb-3 font-title uppercase tracking-wider">
+                            Categorias
+                        </h3>
+
+                        <div id="categoryFilters" class="space-y-2"></div>
                     </div>
 
-                    <!-- Preço -->
                     <div class="mb-6 border-t pt-4 border-gray-100">
-                        <h3 class="font-bold text-sm text-gray-700 mb-2 font-title uppercase tracking-wider">Preço Máximo</h3>
+                        <label
+                            for="priceRange"
+                            class="block font-bold text-sm text-gray-700 mb-2 font-title uppercase tracking-wider"
+                        >
+                            Preço Máximo
+                        </label>
+
                         <div class="flex items-center justify-between text-xs font-bold text-candyPink mb-2">
                             <span>R$ 0</span>
-                            <span id="priceValueDisplay">R$ 50,00</span>
+
+                            <span id="priceValueDisplay">
+                                R$ 50,00
+                            </span>
                         </div>
-                        <input type="range" id="priceRange" min="5" max="50" step="1" value="50"
-                            class="w-full accent-candyPink bg-pink-100 h-2 rounded-lg cursor-pointer">
+
+                        <input
+                            type="range"
+                            id="priceRange"
+                            min="5"
+                            max="50"
+                            step="1"
+                            value="50"
+                            class="w-full accent-candyPink bg-pink-100 h-2 rounded-lg cursor-pointer"
+                        >
                     </div>
 
-                    <!-- Preferências -->
-                    <div class="mb-2 border-t pt-4 border-gray-100">
-                        <h3 class="font-bold text-sm text-gray-700 mb-3 font-title uppercase tracking-wider">Preferências</h3>
+                    <div class="border-t pt-4 border-gray-100">
+                        <h3 class="font-bold text-sm text-gray-700 mb-3 font-title uppercase tracking-wider">
+                            Preferências
+                        </h3>
+
+                        <p class="text-xs text-gray-500 mb-3">
+                            Opções sem açúcar e veganas aguardam
+                            confirmação dos ingredientes.
+                        </p>
+
                         <div class="space-y-2">
                             <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
-                                <input type="checkbox" value="sugarFree" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <input
+                                    type="checkbox"
+                                    value="sugarFree"
+                                    class="attribute-filter w-4 h-4 accent-candyPink"
+                                >
+
                                 <span>Sem Açúcar 🍏</span>
                             </label>
+
                             <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
-                                <input type="checkbox" value="vegan" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <input
+                                    type="checkbox"
+                                    value="vegan"
+                                    class="attribute-filter w-4 h-4 accent-candyPink"
+                                >
+
                                 <span>100% Vegano 🌱</span>
                             </label>
+
                             <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
-                                <input type="checkbox" value="sour" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <input
+                                    type="checkbox"
+                                    value="sour"
+                                    class="attribute-filter w-4 h-4 accent-candyPink"
+                                >
+
                                 <span>Azedinho ⚡</span>
                             </label>
+
                             <label class="flex items-center gap-2.5 text-sm text-gray-600 cursor-pointer hover:text-candyPink">
-                                <input type="checkbox" value="crunchy" class="attribute-filter rounded text-candyPink focus:ring-candyPink w-4 h-4">
+                                <input
+                                    type="checkbox"
+                                    value="crunchy"
+                                    class="attribute-filter w-4 h-4 accent-candyPink"
+                                >
+
                                 <span>Crocante 🍫</span>
                             </label>
                         </div>
                     </div>
-
                 </div>
             </aside>
 
-            <!-- PRODUTOS -->
-            <section class="flex-1">
+            <!-- LISTAGEM DOS PRODUTOS -->
+            <section class="flex-1 min-w-0">
 
                 <div class="bg-white p-4 rounded-2xl shadow-sm border border-pink-100 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-sm font-semibold text-gray-600">
-                        Exibindo <span id="resultsCount" class="text-candyPink font-bold">0</span> produtos deliciosos
+                    <p class="text-sm font-semibold text-gray-600" aria-live="polite">
+                        Exibindo
+                        <span
+                            id="resultsCount"
+                            class="text-candyPink font-bold"
+                        >
+                            0
+                        </span>
+                        produtos deliciosos
                     </p>
 
                     <div class="flex items-center gap-2 w-full sm:w-auto">
-                        <label for="sortSelect" class="text-xs font-bold text-gray-500 uppercase whitespace-nowrap">Ordenar por:</label>
-                        <select id="sortSelect" class="bg-pink-50/50 border border-pink-200 rounded-xl text-sm font-semibold text-gray-700 py-2 px-3 focus:outline-none focus:border-candyPink w-full sm:w-auto">
+                        <label
+                            for="sortSelect"
+                            class="text-xs font-bold text-gray-500 uppercase whitespace-nowrap"
+                        >
+                            Ordenar por:
+                        </label>
+
+                        <select
+                            id="sortSelect"
+                            class="bg-pink-50/50 border border-pink-200 rounded-xl text-sm font-semibold text-gray-700 py-2 px-3 focus:outline-none focus:border-candyPink w-full sm:w-auto"
+                        >
                             <option value="popular">Mais Populares ⭐</option>
                             <option value="priceLow">Menor Preço</option>
                             <option value="priceHigh">Maior Preço</option>
@@ -282,78 +439,135 @@
                     </div>
                 </div>
 
-                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                <div
+                    id="productsGrid"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                ></div>
 
-                <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border-2 border-dashed border-pink-200 p-8">
+                <div
+                    id="emptyState"
+                    class="hidden text-center py-16 bg-white rounded-3xl border-2 border-dashed border-pink-200 p-8"
+                >
                     <div class="text-6xl mb-4">🔍🍭</div>
-                    <h3 class="text-xl font-bold text-gray-700 font-title">Nenhum doce encontrado!</h3>
-                    <p class="text-gray-500 text-sm mt-1 max-w-sm mx-auto">Tente ajustar seus filtros de preço ou alterar o termo digitado na busca.</p>
-                    <button id="clearFiltersBtn" class="mt-4 bg-candyPink text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-pink-600 transition-colors">
+
+                    <h3 class="text-xl font-bold text-gray-700 font-title">
+                        Nenhum doce encontrado!
+                    </h3>
+
+                    <p class="text-gray-500 text-sm mt-1 max-w-sm mx-auto">
+                        Tente ajustar seus filtros de preço ou alterar
+                        o termo digitado na busca.
+                    </p>
+
+                    <button
+                        id="clearFiltersBtn"
+                        class="mt-4 bg-candyPink text-white text-xs font-bold px-5 py-2.5 rounded-full hover:bg-pink-600 transition-colors"
+                    >
                         Restaurar todos os filtros
                     </button>
                 </div>
-
             </section>
         </div>
     </main>
 
     <!-- SOBRE NÓS -->
-    <section id="sobre-nos"
-        class="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50 py-16 px-4 mt-16 scroll-mt-20">
-        <div class="absolute -top-8 left-8 text-5xl opacity-20 pointer-events-none">🍬</div>
-        <div class="absolute bottom-8 right-8 text-5xl opacity-20 pointer-events-none">🍭</div>
+    <section
+        id="sobre-nos"
+        class="relative overflow-hidden bg-gradient-to-br from-pink-50 via-white to-purple-50 py-16 px-4 mt-16 scroll-mt-20"
+    >
+        <div class="absolute -top-8 left-8 text-5xl opacity-20 pointer-events-none">
+            🍬
+        </div>
+
+        <div class="absolute bottom-8 right-8 text-5xl opacity-20 pointer-events-none">
+            🍭
+        </div>
 
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="text-center max-w-3xl mx-auto">
                 <span class="inline-block bg-pink-100 text-candyPink px-4 py-2 rounded-full text-sm font-bold mb-4">
                     💖 Um pouquinho da nossa história
                 </span>
+
                 <h2 class="text-4xl sm:text-5xl font-black font-title text-gray-800 mb-5">
-                    Sobre a <span class="text-candyPink">CandyLand</span>
+                    Sobre a
+                    <span class="text-candyPink">CandyLand</span>
                 </h2>
+
                 <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
-                    A CandyLand nasceu para deixar os momentos do dia a dia mais doces,
-                    coloridos e especiais. Somos apaixonados pelo universo dos doces
-                    e acreditamos que uma pequena guloseima pode transformar um momento
-                    simples em uma lembrança feliz.
+                    A CandyLand nasceu para deixar os momentos do dia a dia
+                    mais doces, coloridos e especiais. Somos apaixonados
+                    pelo universo dos doces e acreditamos que uma pequena
+                    guloseima pode transformar um momento simples em uma
+                    lembrança feliz.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-12">
                 <div class="bg-white rounded-3xl p-7 sm:p-9 border-2 border-pink-100 candy-shadow">
-                    <h3 class="text-2xl font-bold font-title text-candyPurple mb-4">Nossa missão 🍭</h3>
+                    <h3 class="text-2xl font-bold font-title text-candyPurple mb-4">
+                        Nossa missão 🍭
+                    </h3>
+
                     <p class="text-gray-600 leading-relaxed mb-5">
-                        Queremos tornar a experiência de escolher doces fácil,
-                        divertida e cheia de sabor. Por isso, reunimos opções variadas
-                        e oferecemos a possibilidade de personalizar alguns produtos
-                        para deixar cada pedido com a sua cara.
+                        Queremos tornar a experiência de escolher doces
+                        fácil, divertida e cheia de sabor. Por isso,
+                        reunimos opções variadas e oferecemos a possibilidade
+                        de personalizar alguns produtos para deixar cada
+                        pedido com a sua cara.
                     </p>
-                    <h3 class="text-2xl font-bold font-title text-candyPurple mb-3">O que nos inspira? ✨</h3>
+
+                    <h3 class="text-2xl font-bold font-title text-candyPurple mb-3">
+                        O que nos inspira? ✨
+                    </h3>
+
                     <p class="text-gray-600 leading-relaxed">
-                        A alegria de compartilhar, a criatividade e os pequenos
-                        momentos que ficam ainda melhores quando acompanhados
-                        de algo gostoso.
+                        A alegria de compartilhar, a criatividade e os
+                        pequenos momentos que ficam ainda melhores
+                        quando acompanhados de algo gostoso.
                     </p>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div class="bg-white rounded-3xl p-6 text-center border-2 border-pink-100 candy-shadow-hover">
-                        <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center text-3xl mx-auto mb-4">💗</div>
-                        <h3 class="font-bold font-title text-lg text-gray-800 mb-2">Carinho</h3>
+                        <div class="w-14 h-14 rounded-2xl bg-pink-100 flex items-center justify-center text-3xl mx-auto mb-4">
+                            💗
+                        </div>
+
+                        <h3 class="font-bold font-title text-lg text-gray-800 mb-2">
+                            Carinho
+                        </h3>
+
                         <p class="text-sm text-gray-500 leading-relaxed">
-                            Cada detalhe é pensado para deixar sua experiência mais agradável.
+                            Cada detalhe é pensado para deixar sua
+                            experiência mais agradável.
                         </p>
                     </div>
+
                     <div class="bg-white rounded-3xl p-6 text-center border-2 border-purple-100 candy-shadow-hover">
-                        <div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center text-3xl mx-auto mb-4">🌈</div>
-                        <h3 class="font-bold font-title text-lg text-gray-800 mb-2">Variedade</h3>
+                        <div class="w-14 h-14 rounded-2xl bg-purple-100 flex items-center justify-center text-3xl mx-auto mb-4">
+                            🌈
+                        </div>
+
+                        <h3 class="font-bold font-title text-lg text-gray-800 mb-2">
+                            Variedade
+                        </h3>
+
                         <p class="text-sm text-gray-500 leading-relaxed">
-                            Diferentes sabores e opções para descobrir seu próximo doce favorito.
+                            Diferentes sabores e opções para descobrir
+                            seu próximo doce favorito.
                         </p>
                     </div>
-                    <div class="bg-white rounded-3xl p-6 text-center border-2 border-yellow-100 candy-shadow-hover sm:col-span-2">
-                        <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center text-3xl mx-auto mb-4">🎉</div>
-                        <h3 class="font-bold font-title text-lg text-gray-800 mb-2">Alegria em cada pedido</h3>
+
+                    <div class="sm:col-span-2 bg-white rounded-3xl p-6 text-center border-2 border-yellow-100 candy-shadow-hover">
+                        <div class="w-14 h-14 rounded-2xl bg-yellow-100 flex items-center justify-center text-3xl mx-auto mb-4">
+                            🎉
+                        </div>
+
+                        <h3 class="font-bold font-title text-lg text-gray-800 mb-2">
+                            Alegria em cada pedido
+                        </h3>
+
                         <p class="text-sm text-gray-500 leading-relaxed">
                             Acreditamos que doces combinam com comemorações,
                             encontros e momentos especiais.
@@ -362,443 +576,1165 @@
                 </div>
             </div>
 
-            <div class="text-center mt-12">
-                <p class="text-gray-600 mb-5">Que tal encontrar algo delicioso para adoçar o seu dia?</p>
-                <a href="#catalogo"
-                    class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-candyPink to-candyPurple text-white font-bold px-7 py-3 rounded-full shadow-lg hover:opacity-90 active:scale-95 transition-all">
+            <div class="text-center mt-10">
+                <p class="text-gray-600 mb-4">
+                    Que tal encontrar algo delicioso para adoçar o seu dia?
+                </p>
+
+                <a
+                    href="#catalogo"
+                    class="inline-flex items-center gap-2 bg-candyPink text-white font-bold px-7 py-3 rounded-full shadow-lg hover:bg-pink-600 transition-colors"
+                >
                     Conheça nossos doces
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+
+                    <i data-lucide="arrow-up" class="w-4 h-4"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- RODAPÉ -->
     <footer class="bg-white border-t-4 border-pink-100 py-8">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex justify-center items-center gap-2 mb-3">
                 <span class="text-2xl">🍭</span>
-                <span class="font-title font-bold text-xl text-candyPink">CandyLand</span>
+
+                <span class="font-title font-bold text-xl text-candyPink">
+                    CandyLand
+                </span>
             </div>
+
             <p class="text-xs text-gray-500 max-w-md mx-auto">
-                O site mais doce da internet. Produzido com paixão para espalhar alegria e doçura por onde passar.
+                O site mais doce da internet. Produzido com paixão para
+                espalhar alegria e doçura por onde passar.
             </p>
+
             <p class="text-xs text-pink-400 mt-4 font-semibold">
                 © 2026 CandyLand - Todos os direitos reservados.
             </p>
         </div>
     </footer>
 
-    <!-- CARRINHO (DRAWER) -->
-    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none">
-        <div id="cartBackdrop" class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+    <!-- CARRINHO LATERAL -->
+    <div
+        id="cartDrawer"
+        class="fixed inset-0 z-50 overflow-hidden pointer-events-none"
+    >
+        <div
+            id="cartBackdrop"
+            class="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 pointer-events-none"
+        ></div>
 
         <div class="fixed inset-y-0 right-0 max-w-full flex pl-10">
-            <div id="cartPanel" class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto border-l-4 border-candyPink">
-
+            <div
+                id="cartPanel"
+                class="w-screen max-w-md bg-white shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out pointer-events-auto border-l-4 border-candyPink"
+            >
                 <div class="p-5 bg-gradient-to-r from-pink-500 to-purple-500 text-white flex items-center justify-between">
                     <div class="flex items-center gap-2">
                         <i data-lucide="shopping-bag" class="w-6 h-6"></i>
-                        <h2 class="text-lg font-bold font-title">Seu Carrinho Doce</h2>
+
+                        <h2 class="text-lg font-bold font-title">
+                            Seu Carrinho Doce
+                        </h2>
                     </div>
-                    <button id="closeCartBtn" class="p-1 rounded-full hover:bg-white/20 transition-colors" aria-label="Fechar carrinho">
+
+                    <button
+                        id="closeCartBtn"
+                        class="p-1 rounded-full hover:bg-white/20 transition-colors"
+                        aria-label="Fechar carrinho"
+                    >
                         <i data-lucide="x" class="w-6 h-6"></i>
                     </button>
                 </div>
 
-                <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar"></div>
+                <div
+                    id="cartItemsContainer"
+                    class="flex-1 overflow-y-auto p-5 space-y-4 custom-scrollbar"
+                ></div>
 
                 <div class="p-5 bg-pink-50/60 border-t border-pink-100 space-y-4">
                     <div class="space-y-1.5 text-sm">
                         <div class="flex justify-between text-gray-600">
                             <span>Subtotal</span>
-                            <span id="cartSubtotal" class="font-semibold">R$ 0,00</span>
+
+                            <span id="cartSubtotal" class="font-semibold">
+                                R$ 0,00
+                            </span>
                         </div>
+
                         <div class="flex justify-between text-gray-600">
                             <span>Frete Docinho</span>
-                            <span class="text-candyGreen font-bold">GRÁTIS</span>
+
+                            <span class="text-candyGreen font-bold">
+                                GRÁTIS
+                            </span>
                         </div>
+
                         <div class="flex justify-between text-base font-bold text-gray-800 pt-2 border-t">
                             <span class="font-title text-lg">Total</span>
-                            <span id="cartTotal" class="text-candyPink font-title text-xl">R$ 0,00</span>
+
+                            <span
+                                id="cartTotal"
+                                class="text-candyPink font-title text-xl"
+                            >
+                                R$ 0,00
+                            </span>
                         </div>
                     </div>
 
-                    <button id="checkoutBtn" class="w-full bg-gradient-to-r from-candyGreen to-emerald-500 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:shadow-emerald-200 hover:opacity-95 transition-all flex items-center justify-center gap-2 active:scale-95 text-base">
+                    <button
+                        id="checkoutBtn"
+                        class="w-full bg-gradient-to-r from-candyGreen to-emerald-500 text-white font-bold py-3.5 rounded-2xl shadow-lg hover:opacity-95 transition-all flex items-center justify-center gap-2 active:scale-95 text-base"
+                    >
                         <span>Finalizar Pedido</span>
+
                         <i data-lucide="check-circle" class="w-5 h-5"></i>
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- MODAL DE PERSONALIZAÇÃO -->
-    <div id="customizeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <!-- PERSONALIZAÇÃO -->
+    <div
+        id="customizeModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300"
+    >
         <div class="bg-white rounded-3xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl transform scale-95 transition-transform duration-300 border-4 border-candyPink relative">
 
-            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1" aria-label="Fechar">
+            <button
+                id="closeModalBtn"
+                class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 p-1"
+                aria-label="Fechar personalização"
+            >
                 <i data-lucide="x" class="w-6 h-6"></i>
             </button>
 
-            <div class="flex items-center gap-4 mb-4">
-                <div id="modalImage" class="w-20 h-20 shrink-0 text-5xl bg-pink-100 rounded-2xl flex items-center justify-center overflow-hidden">
-                    🍬
-                </div>
+            <div class="flex items-center gap-4 mb-4 pr-5">
+                <div
+                    id="modalImage"
+                    class="w-20 h-20 shrink-0 bg-pink-100 rounded-2xl flex items-center justify-center overflow-hidden"
+                ></div>
+
                 <div>
-                    <span class="text-xs font-bold uppercase text-candyPink tracking-wider">Personalize do seu jeito</span>
-                    <h3 id="modalProductName" class="text-xl font-bold font-title text-gray-800">Nome do Doce</h3>
-                    <p id="modalProductPrice" class="text-candyPurple font-bold text-sm">R$ 0,00</p>
+                    <span class="text-xs font-bold uppercase text-candyPink tracking-wider">
+                        Personalize do seu jeito
+                    </span>
+
+                    <h3
+                        id="modalProductName"
+                        class="text-xl font-bold font-title text-gray-800"
+                    >
+                        Nome do Doce
+                    </h3>
+
+                    <p
+                        id="modalProductPrice"
+                        class="text-candyPurple font-bold text-sm"
+                    >
+                        R$ 0,00
+                    </p>
                 </div>
             </div>
 
             <div class="space-y-4 my-6 text-sm">
                 <div>
-                    <label for="coatingSelect" class="block font-bold text-gray-700 mb-1.5 font-title">1. Escolha a Cobertura Extra:</label>
-                    <select id="coatingSelect" class="w-full p-2.5 border-2 border-pink-200 rounded-xl focus:border-candyPink focus:outline-none">
-                        <option value="Sem Cobertura Extra" data-extra="0">Sem Cobertura Extra (Original)</option>
-                        <option value="Calda de Chocolate Belga" data-extra="3">Calda de Chocolate Belga (+R$ 3,00)</option>
-                        <option value="Ninho com Nutella" data-extra="4.5">Ninho com Nutella (+R$ 4,50)</option>
-                        <option value="Calda Azedinha de Morango" data-extra="2.5">Calda Azedinha de Morango (+R$ 2,50)</option>
+                    <label
+                        for="coatingSelect"
+                        class="block font-bold text-gray-700 mb-1.5 font-title"
+                    >
+                        1. Escolha a Cobertura Extra:
+                    </label>
+
+                    <select
+                        id="coatingSelect"
+                        class="w-full p-2.5 border-2 border-pink-200 rounded-xl focus:border-candyPink focus:outline-none"
+                    >
+                        <option value="Sem Cobertura Extra" data-extra="0">
+                            Sem Cobertura Extra (Original)
+                        </option>
+
+                        <option value="Calda de Chocolate" data-extra="3">
+                            Calda de Chocolate (+R$ 3,00)
+                        </option>
+
+                        <option value="Ninho com Nutella" data-extra="4.5">
+                            Ninho com Nutella (+R$ 4,50)
+                        </option>
+
+                        <option
+                            value="Calda Azedinha de Morango"
+                            data-extra="2.5"
+                        >
+                            Calda Azedinha de Morango (+R$ 2,50)
+                        </option>
                     </select>
                 </div>
 
                 <div>
-                    <span class="block font-bold text-gray-700 mb-1.5 font-title">2. Confeitos Especiais (+R$ 1,50 cada):</span>
+                    <span class="block font-bold text-gray-700 mb-1.5 font-title">
+                        2. Confeitos Especiais (+R$ 1,50 cada):
+                    </span>
+
                     <div class="grid grid-cols-2 gap-2">
                         <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
-                            <input type="checkbox" value="Granulado Colorido" class="topping-option accent-candyPink">
-                            <span class="text-xs font-medium">Granulado Colorido</span>
+                            <input
+                                type="checkbox"
+                                value="Granulado Colorido"
+                                class="topping-option accent-candyPink"
+                            >
+
+                            <span class="text-xs font-medium">
+                                Granulado Colorido
+                            </span>
                         </label>
+
                         <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
-                            <input type="checkbox" value="Choco-Balls Crocantes" class="topping-option accent-candyPink">
-                            <span class="text-xs font-medium">Choco-Balls</span>
+                            <input
+                                type="checkbox"
+                                value="Choco-Balls Crocantes"
+                                class="topping-option accent-candyPink"
+                            >
+
+                            <span class="text-xs font-medium">
+                                Choco-Balls
+                            </span>
                         </label>
+
                         <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
-                            <input type="checkbox" value="Glitter Comestível" class="topping-option accent-candyPink">
-                            <span class="text-xs font-medium">Glitter Comestível ✨</span>
+                            <input
+                                type="checkbox"
+                                value="Glitter Comestível"
+                                class="topping-option accent-candyPink"
+                            >
+
+                            <span class="text-xs font-medium">
+                                Glitter Comestível ✨
+                            </span>
                         </label>
+
                         <label class="flex items-center gap-2 border border-pink-100 p-2.5 rounded-xl cursor-pointer hover:bg-pink-50">
-                            <input type="checkbox" value="Marshmallow Mini" class="topping-option accent-candyPink">
-                            <span class="text-xs font-medium">Mini Marshmallows</span>
+                            <input
+                                type="checkbox"
+                                value="Marshmallow Mini"
+                                class="topping-option accent-candyPink"
+                            >
+
+                            <span class="text-xs font-medium">
+                                Mini Marshmallows
+                            </span>
                         </label>
                     </div>
                 </div>
 
                 <div>
-                    <label for="packageSelect" class="block font-bold text-gray-700 mb-1.5 font-title">3. Embalagem de Presente:</label>
-                    <select id="packageSelect" class="w-full p-2.5 border-2 border-pink-200 rounded-xl focus:border-candyPink focus:outline-none">
-                        <option value="Embalagem Padrão CandyLand" data-extra="0">Embalagem Padrão CandyLand (Grátis)</option>
-                        <option value="Caixa de Presente Laço Rosa" data-extra="5">Caixa de Presente com Laço Rosa (+R$ 5,00)</option>
-                        <option value="Pote de Vidro Mágico" data-extra="8">Pote de Vidro Mágico Reutilizável (+R$ 8,00)</option>
+                    <label
+                        for="packageSelect"
+                        class="block font-bold text-gray-700 mb-1.5 font-title"
+                    >
+                        3. Embalagem de Presente:
+                    </label>
+
+                    <select
+                        id="packageSelect"
+                        class="w-full p-2.5 border-2 border-pink-200 rounded-xl focus:border-candyPink focus:outline-none"
+                    >
+                        <option
+                            value="Embalagem Padrão CandyLand"
+                            data-extra="0"
+                        >
+                            Embalagem Padrão CandyLand (Grátis)
+                        </option>
+
+                        <option
+                            value="Caixa de Presente Laço Rosa"
+                            data-extra="5"
+                        >
+                            Caixa de Presente com Laço Rosa (+R$ 5,00)
+                        </option>
+
+                        <option
+                            value="Pote de Vidro Mágico"
+                            data-extra="8"
+                        >
+                            Pote de Vidro Mágico Reutilizável (+R$ 8,00)
+                        </option>
                     </select>
                 </div>
             </div>
 
-            <button id="addCustomizedToCartBtn" class="w-full bg-candyPink text-white font-bold py-3 rounded-2xl hover:bg-pink-600 transition-colors flex items-center justify-center gap-2 shadow-md">
+            <button
+                id="addCustomizedToCartBtn"
+                class="w-full bg-candyPink text-white font-bold py-3 rounded-2xl hover:bg-pink-600 transition-colors flex items-center justify-center gap-2 shadow-md"
+            >
                 <i data-lucide="sparkles" class="w-5 h-5"></i>
+
                 <span>Adicionar Doce Personalizado</span>
             </button>
-
         </div>
     </div>
 
-    <!-- MODAL DE PEDIDO CONFIRMADO -->
-    <div id="orderSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 hidden">
+    <!-- CONFIRMAÇÃO DEMONSTRATIVA -->
+    <div
+        id="orderSuccessModal"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 hidden"
+    >
         <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center shadow-2xl border-4 border-candyGreen">
             <div class="w-20 h-20 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
                 🎉
             </div>
-            <h2 class="text-2xl font-bold font-title text-gray-800">Pedido Confirmado!</h2>
+
+            <h2 class="text-2xl font-bold font-title text-gray-800">
+                Pedido Confirmado!
+            </h2>
+
             <p class="text-gray-600 text-sm mt-2">
-                Seus doces já estão sendo preparados com muito carinho e amor pela nossa equipe de duendes confeiteiros! 🍬✨
+                Seus doces já estão sendo preparados com muito carinho
+                e amor pela nossa equipe de duendes confeiteiros! 🍬✨
             </p>
+
             <div class="bg-pink-50 p-4 rounded-2xl mt-4 text-left space-y-1.5 text-xs text-gray-600 border border-pink-100">
-                <p><strong>Número do Pedido:</strong> #CANDY-<span id="orderNumber">8492</span></p>
-                <p><strong>Tempo estimado de entrega:</strong> 30 - 45 minutos</p>
-                <p><strong>Status:</strong> Em produção saborosa</p>
+                <p>
+                    <strong>Número do Pedido:</strong>
+                    #CANDY-<span id="orderNumber">0000</span>
+                </p>
+
+                <p>
+                    <strong>Tempo estimado de entrega:</strong>
+                    30 - 45 minutos
+                </p>
+
+                <p>
+                    <strong>Status:</strong>
+                    Em produção saborosa
+                </p>
             </div>
-            <button id="closeSuccessBtn" class="mt-6 w-full bg-candyGreen hover:bg-emerald-600 text-white font-bold py-3 rounded-2xl transition-all shadow-md">
+
+            <button
+                id="closeSuccessBtn"
+                class="mt-6 w-full bg-candyGreen hover:bg-emerald-600 text-white font-bold py-3 rounded-2xl transition-all shadow-md"
+            >
                 Continuar Adoçando a Vida
             </button>
         </div>
     </div>
 
     <script>
-        // --- 1. BANCO DE PRODUTOS ---
+        /*
+         * CATÁLOGO DEMONSTRATIVO
+         *
+         * Preços e porções são propostas referenciais.
+         * O preço do marshmallow tem menor confiança de comparação.
+         *
+         * As imagens são ilustrativas, obtidas de fontes externas.
+         * Seus direitos de uso comercial precisam ser verificados.
+         *
+         * Avaliações e contagens são dados demonstrativos.
+         * O checkout abaixo simula um pedido apenas no navegador.
+         *
+         * null em sugarFree/vegan significa informação não confirmada.
+         */
+
         const PRODUCTS = [
-    { id: 1, name: "Gummies Ursinhos Mágicos", category: "Gomas & Balas", price: 12.90, rating: 4.9, reviews: 128,
-      image: "https://images.unsplash.com/photo-1581454483984-7a9355798e4d?w=600&auto=format&fit=crop&q=80", bgColor: "bg-pink-100", badge: "Mais Vendido",
-      tags: { sugarFree: false, vegan: true, sour: false, crunchy: false } },
-    { id: 2, name: "Barra de Chocolate Ao Leite Belga", category: "Chocolates", price: 24.50, rating: 5.0, reviews: 94,
-      image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&auto=format&fit=crop&q=80", bgColor: "bg-amber-100", badge: "Premium",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 3, name: "Caramelo Salgado Macio", category: "Caramelos", price: 18.00, rating: 4.7, reviews: 67,
-      image: "https://images.unsplash.com/photo-1587314168485-3236d6710814?w=600&auto=format&fit=crop&q=80", bgColor: "bg-orange-100", badge: "Artesanal",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: false } },
-    { id: 4, name: "Pirulito Galáxia Neon", category: "Pirulitos", price: 8.50, rating: 4.8, reviews: 210,
-      image: "https://images.unsplash.com/photo-1575224300305-18f44f003c9d?w=600&auto=format&fit=crop&q=80", bgColor: "bg-purple-100", badge: "Novo",
-      tags: { sugarFree: false, vegan: true, sour: true, crunchy: true } },
-    { id: 5, name: "Marshmallows Nuvem Arco-Íris", category: "Marshmallows", price: 15.90, rating: 4.6, reviews: 82,
-      image: "https://images.unsplash.com/photo-1526399238582-0f9cbf8185d2?w=600&auto=format&fit=crop&q=80", bgColor: "bg-blue-100", badge: "Super Macio",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: false } },
-    { id: 6, name: "Brigadeiro Gourmet de Pistache", category: "Doces Tradicionais", price: 6.00, rating: 5.0, reviews: 156,
-      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=600&auto=format&fit=crop&q=80", bgColor: "bg-green-100", badge: "Favorito",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 7, name: "Balas Azedinhas de Maçã Verde", category: "Gomas & Balas", price: 9.90, rating: 4.5, reviews: 43,
-      image: "https://images.unsplash.com/photo-1612198188060-c7c7f3a35ab2?w=600&auto=format&fit=crop&q=80", bgColor: "bg-emerald-100", badge: "Azedinho",
-      tags: { sugarFree: true, vegan: true, sour: true, crunchy: false } },
-    { id: 8, name: "Bombom de Morango com Chocolate Zero", category: "Chocolates", price: 29.90, rating: 4.9, reviews: 75,
-      image: "https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=600&auto=format&fit=crop&q=80", bgColor: "bg-rose-100", badge: "Zero Açúcar",
-      tags: { sugarFree: true, vegan: false, sour: false, crunchy: false } },
-    { id: 9, name: "Torta Tartalete de Limão", category: "Doces Tradicionais", price: 14.00, rating: 4.8, reviews: 89,
-      image: "https://images.unsplash.com/photo-1519869325930-281384150729?w=600&auto=format&fit=crop&q=80", bgColor: "bg-yellow-100", badge: "Refrescante",
-      tags: { sugarFree: false, vegan: false, sour: true, crunchy: true } },
-    { id: 10, name: "Donuts Cobertos com Chocolate", category: "Doces Tradicionais", price: 12.90, rating: 4.9, reviews: 96,
-      image: "https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&auto=format&fit=crop&q=80", bgColor: "bg-pink-100", badge: "Delícia",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: false } },
-    { id: 11, name: "Cupcake de Baunilha", category: "Bolos & Cupcakes", price: 9.50, rating: 4.8, reviews: 74,
-      image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?w=600&auto=format&fit=crop&q=80", bgColor: "bg-purple-100", badge: "Fofo e Delicioso",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: false } },
-    { id: 12, name: "Cookies com Gotas de Chocolate", category: "Biscoitos", price: 8.90, rating: 4.9, reviews: 132,
-      image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=600&auto=format&fit=crop&q=80", bgColor: "bg-amber-100", badge: "Mais Pedidos",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 13, name: "Macarons Franceses", category: "Doces Finos", price: 19.90, rating: 4.7, reviews: 61,
-      image: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=600&auto=format&fit=crop&q=80", bgColor: "bg-rose-100", badge: "Elegante",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 14, name: "Alfajor Recheado com Doce de Leite", category: "Biscoitos", price: 10.00, rating: 4.9, reviews: 105,
-      image: "https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?w=600&auto=format&fit=crop&q=80", bgColor: "bg-yellow-100", badge: "Tradicional",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: false } },
-    { id: 15, name: "Waffle com Calda de Chocolate", category: "Sobremesas", price: 17.90, rating: 4.8, reviews: 83,
-      image: "https://images.unsplash.com/photo-1562376552-0d160a2f238d?w=600&auto=format&fit=crop&q=80", bgColor: "bg-orange-100", badge: "Irresistível",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 16, name: "Pipoca Doce Caramelizada", category: "Snacks Doces", price: 7.90, rating: 4.6, reviews: 57,
-      image: "https://images.unsplash.com/photo-1578849278619-e73505e9610f?w=600&auto=format&fit=crop&q=80", bgColor: "bg-yellow-100", badge: "Crocante",
-      tags: { sugarFree: false, vegan: true, sour: false, crunchy: true } },
-    { id: 17, name: "Biscoitos Recheados", category: "Biscoitos", price: 6.90, rating: 4.7, reviews: 89,
-      image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop&q=80", bgColor: "bg-orange-100", badge: "Clássico",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 18, name: "Gelatina Colorida", category: "Sobremesas", price: 5.90, rating: 4.5, reviews: 46,
-      image: "https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=600&auto=format&fit=crop&q=80", bgColor: "bg-fuchsia-100", badge: "Divertido",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: false } },
-    { id: 19, name: "Churros com Doce de Leite", category: "Sobremesas", price: 11.90, rating: 4.9, reviews: 118,
-      image: "https://images.unsplash.com/photo-1624371414361-e670edf4898d?w=600&auto=format&fit=crop&q=80", bgColor: "bg-amber-100", badge: "Favorito",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 20, name: "Suspiros Açucarados", category: "Doces Finos", price: 8.50, rating: 4.6, reviews: 52,
-      image: "https://images.unsplash.com/photo-1532499015411-e6e765d70f1a?w=600&auto=format&fit=crop&q=80", bgColor: "bg-sky-100", badge: "Levinho",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } },
-    { id: 21, name: "Sorvete de Casquinha", category: "Sorvetes", price: 10.90, rating: 4.8, reviews: 141,
-      image: "https://images.unsplash.com/photo-1560008511-11c63416e52d?w=600&auto=format&fit=crop&q=80", bgColor: "bg-cyan-100", badge: "Refrescante",
-      tags: { sugarFree: false, vegan: false, sour: false, crunchy: true } }
-];
+            {
+                id: 1,
+                name: "Gomas de Ursinho",
+                category: "Gomas & Balas",
+                price: 9.90,
+                rating: 4.9,
+                reviews: 128,
+                image: "https://1884403144.rsc.cdn77.org/foto/gumovi-medvidci/MTIwMHg2NzUvc21hcnQvaW1n/2775704.jpg?e=0&st=cjJoXVmNZUjm5IOd-XHvuCxvABG8P3L0BWLAzF-arac&ts=1600812000&v=0",
+                bgColor: "bg-pink-100",
+                badge: "Mais Vendido",
+                description: "Gomas em formato de ursinho.",
+                portion: "Pacote de 80 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 2,
+                name: "Barra de Chocolate ao Leite",
+                category: "Chocolates",
+                price: 24.50,
+                rating: 5.0,
+                reviews: 94,
+                image: "https://www.calories.fr/images/fr/og/chocolat-au-lait.jpg",
+                bgColor: "bg-amber-100",
+                badge: "Premium",
+                description: "Chocolate ao leite em barra.",
+                portion: "Barra de 100 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 3,
+                name: "Caramelo Salgado Macio",
+                category: "Caramelos",
+                price: 7.90,
+                rating: 4.7,
+                reviews: 67,
+                image: "https://hips.hearstapps.com/hmg-prod/images/delish-081821-salted-caramels-04-jg-1632166536.jpg?resize=800:*",
+                bgColor: "bg-orange-100",
+                badge: "Caramelo",
+                description: "Caramelos macios com toque salgado.",
+                portion: "Pacote de 100 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 4,
+                name: "Pirulito Colorido",
+                category: "Pirulitos",
+                price: 5.90,
+                rating: 4.8,
+                reviews: 210,
+                image: "https://www.sugarlysweets.com/cdn/shop/files/SwirlLollipop.jpg?v=1723653012",
+                bgColor: "bg-purple-100",
+                badge: "Novo",
+                description: "Pirulito de açúcar colorido.",
+                portion: "1 pirulito de 80 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 5,
+                name: "Marshmallows Coloridos",
+                category: "Marshmallows",
+                price: 15.90,
+                rating: 4.6,
+                reviews: 82,
+                image: "https://i.etsystatic.com/13268023/r/il/40f0b0/2360971573/il_1588xN.2360971573_86ly.jpg",
+                bgColor: "bg-blue-100",
+                badge: "Super Macio",
+                description: "Marshmallows coloridos de textura macia.",
+                portion: "Pacote de 80 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 6,
+                name: "Brigadeiro de Pistache",
+                category: "Doces Tradicionais",
+                price: 6.00,
+                rating: 5.0,
+                reviews: 156,
+                image: "https://shop.tinybchocolate.com/cdn/shop/files/MG_8900_1200x.jpg?v=1717106779",
+                bgColor: "bg-green-100",
+                badge: "Favorito",
+                description: "Brigadeiro sabor pistache.",
+                portion: "1 brigadeiro",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 7,
+                name: "Balas Azedinhas de Maçã Verde",
+                category: "Gomas & Balas",
+                price: 3.90,
+                rating: 4.5,
+                reviews: 43,
+                image: "https://jeffreynuts.myshopify.com/cdn/shop/files/1746651268518_0_jqyfvs.jpg?v=1746651273&width=1000",
+                bgColor: "bg-emerald-100",
+                badge: "Azedinho",
+                description: "Balas de maçã verde com sabor azedinho.",
+                portion: "Pacote de 100 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: true,
+                    crunchy: false
+                }
+            },
+            {
+                id: 8,
+                name: "Bombom de Morango com Chocolate",
+                category: "Chocolates",
+                price: 12.90,
+                rating: 4.9,
+                reviews: 75,
+                image: "https://jornaldobras.com.br/images/noticias/43472/18114618_Captura_de.png.png",
+                bgColor: "bg-rose-100",
+                badge: "Morango",
+                description: "Bombom de chocolate com recheio de morango.",
+                portion: "1 bombom de aproximadamente 60 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 9,
+                name: "Tartalete de Limão",
+                category: "Doces Tradicionais",
+                price: 14.00,
+                rating: 4.8,
+                reviews: 89,
+                image: "https://commande.compagniedesdesserts.com/media/cache/sylius_shop_product_original/90778/tartelette-citron.png",
+                bgColor: "bg-yellow-100",
+                badge: "Refrescante",
+                description: "Tortinha individual de limão.",
+                portion: "1 tortinha individual",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: true,
+                    crunchy: true
+                }
+            },
+            {
+                id: 10,
+                name: "Donut com Cobertura de Chocolate",
+                category: "Doces Tradicionais",
+                price: 9.90,
+                rating: 4.9,
+                reviews: 96,
+                image: "https://static.kuma.tridge.com/2026-03-26/images/product_thumbnails/chocolate-ring-donut.jpg",
+                bgColor: "bg-pink-100",
+                badge: "Delícia",
+                description: "Donut com cobertura de chocolate.",
+                portion: "1 donut de 70 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 11,
+                name: "Cupcake de Baunilha",
+                category: "Bolos & Cupcakes",
+                price: 12.90,
+                rating: 4.8,
+                reviews: 74,
+                image: "https://static.wixstatic.com/media/ece690_54b2bb1b307446aa8d7bd23e101bf121~mv2.png/v1/fill/w_1024,h_1024,al_c,q_90/ece690_54b2bb1b307446aa8d7bd23e101bf121~mv2.png",
+                bgColor: "bg-purple-100",
+                badge: "Fofo e Delicioso",
+                description: "Bolinho individual sabor baunilha.",
+                portion: "1 cupcake",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 12,
+                name: "Cookie com Gotas de Chocolate",
+                category: "Biscoitos",
+                price: 8.90,
+                rating: 4.9,
+                reviews: 132,
+                image: "https://images.rawpixel.com/image_social_square/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDI0LTA4L3Jhd3BpeGVsX29mZmljZV8yOV9waG90b19hX3NpbmdsZV9jaG9jb2xhdGVfY2hpcF9jb29raWVfY29va2llc18xMTliYTNiYy00Nzc3LTQ0MzAtOGJjMy0wMzNiNmQ4YWZiN2FfMS5qcGc.jpg",
+                bgColor: "bg-amber-100",
+                badge: "Mais Pedidos",
+                description: "Cookie com gotas de chocolate.",
+                portion: "1 cookie",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 13,
+                name: "Macarons",
+                category: "Doces Finos",
+                price: 19.90,
+                rating: 4.7,
+                reviews: 61,
+                image: "https://www.alimentipedia.it/files/images/macarons.jpg",
+                bgColor: "bg-rose-100",
+                badge: "Elegante",
+                description: "Macarons de cores variadas.",
+                portion: "Caixa com 2 macarons",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 14,
+                name: "Alfajor com Doce de Leite",
+                category: "Biscoitos",
+                price: 10.00,
+                rating: 4.9,
+                reviews: 105,
+                image: "https://havanna.com.ar/havanna-institucional/alfajormardelplata/assets/images/alfajor-header.png?v=1.0.5",
+                bgColor: "bg-yellow-100",
+                badge: "Tradicional",
+                description: "Alfajor recheado com doce de leite.",
+                portion: "1 alfajor",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 15,
+                name: "Waffle com Creme de Chocolate e Avelã",
+                category: "Sobremesas",
+                price: 22.90,
+                rating: 4.8,
+                reviews: 83,
+                image: "https://rhukracakehouse.com/cdn/shop/files/Nutella_Waffle_Rhukra_Cake_House.png?v=1736248469",
+                bgColor: "bg-orange-100",
+                badge: "Irresistível",
+                description: "Waffle com cobertura de creme de chocolate e avelã.",
+                portion: "1 waffle com cobertura",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 16,
+                name: "Pipoca Doce Caramelizada",
+                category: "Snacks Doces",
+                price: 6.90,
+                rating: 4.6,
+                reviews: 57,
+                image: "https://itsonly.recipes/images/recipeimages/golden-caramel-popcorn.webp",
+                bgColor: "bg-yellow-100",
+                badge: "Crocante",
+                description: "Pipoca coberta com caramelo.",
+                portion: "Pacote de 100 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 17,
+                name: "Biscoitos Amanteigados com Recheio de Chocolate",
+                category: "Biscoitos",
+                price: 13.90,
+                rating: 4.7,
+                reviews: 89,
+                image: "https://www.cocinayrecetasfaciles.com/files/styles/receta_full/public/receta/galletas-principe-2.jpg",
+                bgColor: "bg-orange-100",
+                badge: "Clássico",
+                description: "Biscoitos amanteigados com recheio de chocolate.",
+                portion: "Pacote de 200 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 18,
+                name: "Gelatina Colorida com Creme",
+                category: "Sobremesas",
+                price: 5.90,
+                rating: 4.5,
+                reviews: 46,
+                image: "https://www.sabornamesa.com.br/media/k2/items/cache/b190b9bcae39ee6b68c160e3e6f45456_XL.jpg",
+                bgColor: "bg-fuchsia-100",
+                badge: "Divertido",
+                description: "Gelatina colorida em cubos com creme branco.",
+                portion: "1 porção individual",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: false
+                }
+            },
+            {
+                id: 19,
+                name: "Churro com Doce de Leite",
+                category: "Sobremesas",
+                price: 11.90,
+                rating: 4.9,
+                reviews: 118,
+                image: "https://images.mrcook.app/recipe-image/0198bf7c-763f-7f5b-8e43-5a46f2a7fa47?cacheKey=TW9uLCAxOCBBdWcgMjAyNSAyMzoyMTowNCBHTVQ%3D",
+                bgColor: "bg-amber-100",
+                badge: "Favorito",
+                description: "Churro com doce de leite.",
+                portion: "1 churro recheado",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 20,
+                name: "Suspiros",
+                category: "Doces Finos",
+                price: 9.90,
+                rating: 4.6,
+                reviews: 52,
+                image: "https://img.tribunanacional.com.br/2026/01/como-fazer-suspiro-caseiro-ponto-h3-3-img-3.jpg",
+                bgColor: "bg-sky-100",
+                badge: "Levinho",
+                description: "Suspiros doces.",
+                portion: "Pacote de 100 g",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            },
+            {
+                id: 21,
+                name: "Sorvete na Casquinha",
+                category: "Sorvetes",
+                price: 7.90,
+                rating: 4.8,
+                reviews: 141,
+                image: "https://images.unsplash.com/photo-1688841914419-482222767a22?auto=format&fit=crop&w=1000&q=85",
+                bgColor: "bg-cyan-100",
+                badge: "Refrescante",
+                description: "Sorvete servido em casquinha; consultar o sabor disponível.",
+                portion: "1 casquinha simples",
+                tags: {
+                    sugarFree: null,
+                    vegan: null,
+                    sour: false,
+                    crunchy: true
+                }
+            }
+        ];
+
         const CATEGORIES = [
             "Todos",
             ...new Set(PRODUCTS.map(product => product.category))
         ];
 
-        // --- 2. ESTADO ---
+        const IMAGE_NOTE =
+            "Imagem ilustrativa • apresentação pode variar";
+
+        // ESTADO DA APLICAÇÃO
+
         let selectedCategory = "Todos";
         let maxPrice = 50;
         let searchQuery = "";
         let selectedAttributes = [];
         let sortBy = "popular";
+
         let cart = [];
         let customizingProduct = null;
         let nextCartItemId = 1;
 
-        // --- 3. ELEMENTOS DO DOM ---
-        const productsGrid = document.getElementById('productsGrid');
-        const emptyState = document.getElementById('emptyState');
-        const resultsCount = document.getElementById('resultsCount');
-        const categoryFiltersContainer = document.getElementById('categoryFilters');
-        const priceRange = document.getElementById('priceRange');
-        const priceValueDisplay = document.getElementById('priceValueDisplay');
-        const searchInput = document.getElementById('searchInput');
-        const searchInputMobile = document.getElementById('searchInputMobile');
-        const sortSelect = document.getElementById('sortSelect');
-        const resetFiltersBtn = document.getElementById('resetFilters');
-        const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+        // ELEMENTOS DO CATÁLOGO
 
-        const cartBtn = document.getElementById('cartBtn');
-        const cartDrawer = document.getElementById('cartDrawer');
-        const cartBackdrop = document.getElementById('cartBackdrop');
-        const cartPanel = document.getElementById('cartPanel');
-        const closeCartBtn = document.getElementById('closeCartBtn');
-        const cartItemsContainer = document.getElementById('cartItemsContainer');
-        const cartBadge = document.getElementById('cartBadge');
-        const cartSubtotal = document.getElementById('cartSubtotal');
-        const cartTotal = document.getElementById('cartTotal');
-        const checkoutBtn = document.getElementById('checkoutBtn');
+        const productsGrid =
+            document.getElementById("productsGrid");
 
-        const customizeModal = document.getElementById('customizeModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalProductName = document.getElementById('modalProductName');
-        const modalProductPrice = document.getElementById('modalProductPrice');
-        const modalImage = document.getElementById('modalImage');
-        const addCustomizedToCartBtn = document.getElementById('addCustomizedToCartBtn');
-        const coatingSelect = document.getElementById('coatingSelect');
-        const packageSelect = document.getElementById('packageSelect');
+        const emptyState =
+            document.getElementById("emptyState");
 
-        const orderSuccessModal = document.getElementById('orderSuccessModal');
-        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
-        const orderNumber = document.getElementById('orderNumber');
+        const resultsCount =
+            document.getElementById("resultsCount");
 
-        // --- 4. FUNÇÕES AUXILIARES ---
+        const categoryFiltersContainer =
+            document.getElementById("categoryFilters");
+
+        const priceRange =
+            document.getElementById("priceRange");
+
+        const priceValueDisplay =
+            document.getElementById("priceValueDisplay");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const searchInputMobile =
+            document.getElementById("searchInputMobile");
+
+        const sortSelect =
+            document.getElementById("sortSelect");
+
+        const resetFiltersBtn =
+            document.getElementById("resetFilters");
+
+        const clearFiltersBtn =
+            document.getElementById("clearFiltersBtn");
+
+        // ELEMENTOS DO CARRINHO
+
+        const cartBtn =
+            document.getElementById("cartBtn");
+
+        const cartDrawer =
+            document.getElementById("cartDrawer");
+
+        const cartBackdrop =
+            document.getElementById("cartBackdrop");
+
+        const cartPanel =
+            document.getElementById("cartPanel");
+
+        const closeCartBtn =
+            document.getElementById("closeCartBtn");
+
+        const cartItemsContainer =
+            document.getElementById("cartItemsContainer");
+
+        const cartBadge =
+            document.getElementById("cartBadge");
+
+        const cartSubtotal =
+            document.getElementById("cartSubtotal");
+
+        const cartTotal =
+            document.getElementById("cartTotal");
+
+        const checkoutBtn =
+            document.getElementById("checkoutBtn");
+
+        // ELEMENTOS DA PERSONALIZAÇÃO
+
+        const customizeModal =
+            document.getElementById("customizeModal");
+
+        const closeModalBtn =
+            document.getElementById("closeModalBtn");
+
+        const modalProductName =
+            document.getElementById("modalProductName");
+
+        const modalProductPrice =
+            document.getElementById("modalProductPrice");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        const addCustomizedToCartBtn =
+            document.getElementById("addCustomizedToCartBtn");
+
+        const coatingSelect =
+            document.getElementById("coatingSelect");
+
+        const packageSelect =
+            document.getElementById("packageSelect");
+
+        // ELEMENTOS DA CONFIRMAÇÃO
+
+        const orderSuccessModal =
+            document.getElementById("orderSuccessModal");
+
+        const closeSuccessBtn =
+            document.getElementById("closeSuccessBtn");
+
+        const orderNumber =
+            document.getElementById("orderNumber");
+
+        // FUNÇÕES AUXILIARES
+
         function formatPrice(value) {
-            return 'R$ ' + value.toFixed(2).replace('.', ',');
+            return "R$ " + value.toFixed(2).replace(".", ",");
         }
 
         function escapeHTML(text) {
             return String(text)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#39;");
+        }
+
+        function refreshIcons() {
+            if (window.lucide) {
+                lucide.createIcons();
+            }
         }
 
         function imageFallback(img) {
-            const span = document.createElement('span');
-            span.className = 'text-5xl flex items-center justify-center w-full h-full';
-            span.textContent = '🍬';
+            const span = document.createElement("span");
+
+            span.className =
+                "text-xs text-gray-600 flex items-center " +
+                "justify-center w-full h-full p-2 text-center";
+
+            span.textContent = "Foto indisponível";
+
             img.replaceWith(span);
         }
 
         function imageTag(product, extraClasses) {
-            return `<img src="${product.image}" alt="${escapeHTML(product.name)}" loading="lazy"
-                        class="${extraClasses}" onerror="imageFallback(this)">`;
+            return `
+                <img
+                    src="${escapeHTML(product.image)}"
+                    alt="${escapeHTML(product.name)}"
+                    loading="lazy"
+                    class="${extraClasses}"
+                    onerror="imageFallback(this)"
+                >
+            `;
         }
 
-        // --- 5. INICIALIZAÇÃO ---
-        window.addEventListener('DOMContentLoaded', () => {
-            renderCategories();
-            renderProducts();
-            updateCartUI();
-            setupEventListeners();
-            if (window.lucide) lucide.createIcons();
-        });
+        // CATEGORIAS E FILTROS
 
-        // --- 6. RENDERIZAÇÃO ---
         function renderCategories() {
-            categoryFiltersContainer.innerHTML = CATEGORIES.map(cat => {
-                const isActive = cat === selectedCategory;
+            categoryFiltersContainer.innerHTML = CATEGORIES.map(category => {
+                const isActive = category === selectedCategory;
+
+                const activeClasses = isActive
+                    ? "bg-candyPink text-white shadow-md"
+                    : "text-gray-600 hover:bg-pink-50 hover:text-candyPink";
+
                 return `
-                    <button data-category="${escapeHTML(cat)}"
-                        class="category-btn w-full text-left px-3 py-2 rounded-2xl text-sm font-semibold transition-all flex items-center justify-between ${
+                    <button
+                        data-category="${escapeHTML(category)}"
+                        class="category-btn w-full text-left px-3 py-2 rounded-2xl text-sm font-semibold transition-all flex items-center justify-between ${activeClasses}"
+                    >
+                        <span>${escapeHTML(category)}</span>
+
+                        ${
                             isActive
-                                ? 'bg-candyPink text-white shadow-md'
-                                : 'text-gray-600 hover:bg-pink-50 hover:text-candyPink'
-                        }">
-                        <span>${escapeHTML(cat)}</span>
-                        ${isActive ? '<i data-lucide="chevron-right" class="w-4 h-4"></i>' : ''}
+                                ? '<i data-lucide="chevron-right" class="w-4 h-4"></i>'
+                                : ""
+                        }
                     </button>
                 `;
-            }).join('');
+            }).join("");
 
-            if (window.lucide) lucide.createIcons();
+            refreshIcons();
         }
 
         function getFilteredProducts() {
             const query = searchQuery.trim().toLowerCase();
 
-            return PRODUCTS.filter(p => {
-                const matchCategory = selectedCategory === "Todos" || p.category === selectedCategory;
-                const matchPrice = p.price <= maxPrice;
-                const matchQuery = p.name.toLowerCase().includes(query) ||
-                                   p.category.toLowerCase().includes(query);
-                const matchAttributes = selectedAttributes.every(attr => p.tags[attr] === true);
+            return PRODUCTS.filter(product => {
+                const matchCategory =
+                    selectedCategory === "Todos" ||
+                    product.category === selectedCategory;
 
-                return matchCategory && matchPrice && matchQuery && matchAttributes;
+                const matchPrice =
+                    product.price <= maxPrice;
+
+                const matchQuery =
+                    product.name.toLowerCase().includes(query) ||
+                    product.category.toLowerCase().includes(query) ||
+                    product.description.toLowerCase().includes(query);
+
+                const matchAttributes =
+                    selectedAttributes.every(attribute => {
+                        return product.tags[attribute] === true;
+                    });
+
+                return (
+                    matchCategory &&
+                    matchPrice &&
+                    matchQuery &&
+                    matchAttributes
+                );
             }).sort((a, b) => {
-                if (sortBy === 'priceLow') return a.price - b.price;
-                if (sortBy === 'priceHigh') return b.price - a.price;
-                if (sortBy === 'nameAZ') return a.name.localeCompare(b.name, 'pt-BR');
+                if (sortBy === "priceLow") {
+                    return a.price - b.price;
+                }
+
+                if (sortBy === "priceHigh") {
+                    return b.price - a.price;
+                }
+
+                if (sortBy === "nameAZ") {
+                    return a.name.localeCompare(b.name, "pt-BR");
+                }
+
                 return b.rating - a.rating;
             });
         }
 
+        function resetAllFilters() {
+            selectedCategory = "Todos";
+            maxPrice = 50;
+            searchQuery = "";
+            selectedAttributes = [];
+            sortBy = "popular";
+
+            priceRange.value = 50;
+            priceValueDisplay.textContent = formatPrice(50);
+
+            searchInput.value = "";
+            searchInputMobile.value = "";
+            sortSelect.value = "popular";
+
+            document
+                .querySelectorAll(".attribute-filter")
+                .forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+
+            renderCategories();
+            renderProducts();
+        }
+
+        // RENDERIZAÇÃO DOS PRODUTOS
+
         function renderProducts() {
             const filtered = getFilteredProducts();
+
             resultsCount.textContent = filtered.length;
 
             if (filtered.length === 0) {
-                productsGrid.classList.add('hidden');
-                emptyState.classList.remove('hidden');
+                productsGrid.classList.add("hidden");
+                emptyState.classList.remove("hidden");
                 return;
             }
 
-            productsGrid.classList.remove('hidden');
-            emptyState.classList.add('hidden');
+            productsGrid.classList.remove("hidden");
+            emptyState.classList.add("hidden");
 
-            productsGrid.innerHTML = filtered.map(p => `
-                <div class="bg-white rounded-3xl p-5 border-2 border-pink-100 candy-shadow-hover flex flex-col justify-between relative group">
+            productsGrid.innerHTML = filtered.map(product => {
+                return `
+                    <article class="bg-white rounded-3xl p-5 border-2 border-pink-100 candy-shadow-hover flex flex-col justify-between relative group">
 
-                    <span class="absolute top-4 left-4 bg-candyYellow text-pink-900 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm z-10">
-                        ${escapeHTML(p.badge)}
-                    </span>
+                        <span class="absolute top-4 left-4 bg-candyYellow text-pink-900 font-extrabold text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-sm z-10">
+                            ${escapeHTML(product.badge)}
+                        </span>
 
-                    <div>
-                        <div class="${p.bgColor} rounded-2xl h-44 mb-4 relative overflow-hidden">
-                            ${imageTag(p, 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-300')}
-                        </div>
-
-                        <div class="flex items-center justify-between text-xs text-gray-400 mb-1">
-                            <span>${escapeHTML(p.category)}</span>
-                            <div class="flex items-center gap-1 text-amber-400 font-bold">
-                                <span>⭐ ${p.rating.toFixed(1)}</span>
-                                <span class="text-gray-300">(${p.reviews})</span>
+                        <div>
+                            <div class="${product.bgColor} rounded-2xl h-44 mb-4 relative overflow-hidden">
+                                ${
+                                    imageTag(
+                                        product,
+                                        "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    )
+                                }
                             </div>
-                        </div>
 
-                        <h3 class="font-bold text-gray-800 text-base font-title mb-2 line-clamp-1 group-hover:text-candyPink transition-colors">
-                            ${escapeHTML(p.name)}
-                        </h3>
-                    </div>
-
-                    <div class="mt-4 pt-3 border-t border-gray-100">
-                        <div class="flex items-center justify-between mb-3">
-                            <div>
-                                <span class="text-xs text-gray-400 block">Preço</span>
-                                <span class="text-xl font-black text-candyPurple font-title">
-                                    ${formatPrice(p.price)}
+                            <div class="flex items-center justify-between gap-2 text-xs text-gray-400 mb-1">
+                                <span>
+                                    ${escapeHTML(product.category)}
                                 </span>
+
+                                <div class="flex items-center gap-1 text-amber-400 font-bold shrink-0">
+                                    <span>
+                                        ⭐ ${product.rating.toFixed(1)}
+                                    </span>
+
+                                    <span class="text-gray-300">
+                                        (${product.reviews})
+                                    </span>
+                                </div>
                             </div>
 
-                            <button onclick="openCustomizeModal(${p.id})"
-                                class="text-xs font-bold text-candyPink hover:text-pink-700 bg-pink-50 hover:bg-pink-100 px-3 py-1.5 rounded-full transition-colors flex items-center gap-1">
-                                <span>✨ Personalizar</span>
+                            <h3 class="font-bold text-gray-800 text-base font-title mb-2 group-hover:text-candyPink transition-colors">
+                                ${escapeHTML(product.name)}
+                            </h3>
+
+                            <p class="text-xs text-gray-600 mb-2">
+                                ${escapeHTML(product.description)}
+                            </p>
+
+                            <p class="text-xs font-bold text-candyPurple">
+                                ${escapeHTML(product.portion)}
+                            </p>
+
+                            <p class="text-[10px] text-gray-500 mt-1">
+                                ${IMAGE_NOTE}
+                            </p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-gray-100">
+                            <div class="flex items-center justify-between gap-2 mb-3">
+                                <div>
+                                    <span class="text-xs text-gray-400 block">
+                                        Preço por porção
+                                    </span>
+
+                                    <span class="text-xl font-black text-candyPurple font-title">
+                                        ${formatPrice(product.price)}
+                                    </span>
+                                </div>
+
+                                <button
+                                    onclick="openCustomizeModal(${product.id})"
+                                    class="text-xs font-bold text-candyPink hover:text-pink-700 bg-pink-50 hover:bg-pink-100 px-3 py-1.5 rounded-full transition-colors"
+                                >
+                                    ✨ Personalizar
+                                </button>
+                            </div>
+
+                            <button
+                                onclick="addToCart(${product.id})"
+                                class="w-full bg-candyPink hover:bg-pink-600 text-white font-bold py-2.5 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
+                            >
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+
+                                <span>Adicionar ao Carrinho</span>
                             </button>
                         </div>
+                    </article>
+                `;
+            }).join("");
 
-                        <button onclick="addToCart(${p.id})"
-                            class="w-full bg-candyPink hover:bg-pink-600 text-white font-bold py-2.5 rounded-2xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2">
-                            <i data-lucide="plus" class="w-4 h-4"></i>
-                            <span>Adicionar ao Carrinho</span>
-                        </button>
-                    </div>
-
-                </div>
-            `).join('');
-
-            if (window.lucide) lucide.createIcons();
+            refreshIcons();
         }
 
-        // --- 7. CARRINHO ---
+        // CARRINHO
+
         function addToCart(productId, customDetails = null) {
-            const product = PRODUCTS.find(p => p.id === productId);
-            if (!product) return;
+            const product = PRODUCTS.find(item => {
+                return item.id === productId;
+            });
+
+            if (!product) {
+                return;
+            }
 
             if (customDetails) {
                 cart.push({
                     ...product,
                     cartItemId: nextCartItemId++,
                     price: customDetails.finalPrice,
-                    name: `${product.name} (Custom)`,
+                    name: `${product.name} (Personalizado)`,
                     customDetails,
                     quantity: 1
                 });
             } else {
-                const existing = cart.find(item => item.id === productId && !item.customDetails);
+                const existing = cart.find(item => {
+                    return (
+                        item.id === productId &&
+                        !item.customDetails
+                    );
+                });
+
                 if (existing) {
                     existing.quantity += 1;
                 } else {
@@ -815,228 +1751,434 @@
         }
 
         function updateCartQuantity(cartItemId, delta) {
-            const index = cart.findIndex(item => item.cartItemId === cartItemId);
-            if (index > -1) {
-                cart[index].quantity += delta;
-                if (cart[index].quantity <= 0) {
-                    cart.splice(index, 1);
-                }
+            const index = cart.findIndex(item => {
+                return item.cartItemId === cartItemId;
+            });
+
+            if (index === -1) {
+                return;
             }
+
+            cart[index].quantity += delta;
+
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+
             updateCartUI();
         }
 
         function updateCartUI() {
-            const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+            const totalCount = cart.reduce((total, item) => {
+                return total + item.quantity;
+            }, 0);
+
             cartBadge.textContent = totalCount;
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `
                     <div class="text-center py-12 text-gray-400">
                         <div class="text-5xl mb-3">🛒</div>
-                        <p class="font-bold font-title text-gray-600">Seu carrinho está vazio</p>
-                        <p class="text-xs mt-1">Adicione doces deliciosos para começar!</p>
+
+                        <p class="font-bold font-title text-gray-600">
+                            Seu carrinho está vazio
+                        </p>
+
+                        <p class="text-xs mt-1">
+                            Adicione doces deliciosos para começar!
+                        </p>
                     </div>
                 `;
-                cartSubtotal.textContent = "R$ 0,00";
-                cartTotal.textContent = "R$ 0,00";
+
+                cartSubtotal.textContent = formatPrice(0);
+                cartTotal.textContent = formatPrice(0);
+
                 checkoutBtn.disabled = true;
-                checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                checkoutBtn.classList.add(
+                    "opacity-50",
+                    "cursor-not-allowed"
+                );
+
                 return;
             }
 
             checkoutBtn.disabled = false;
-            checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
 
-            const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            checkoutBtn.classList.remove(
+                "opacity-50",
+                "cursor-not-allowed"
+            );
+
+            const totalAmount = cart.reduce((total, item) => {
+                return total + item.price * item.quantity;
+            }, 0);
+
             cartSubtotal.textContent = formatPrice(totalAmount);
             cartTotal.textContent = formatPrice(totalAmount);
 
-            cartItemsContainer.innerHTML = cart.map(item => `
-                <div class="flex items-center gap-3 bg-pink-50/50 p-3 rounded-2xl border border-pink-100">
-                    <div class="${item.bgColor || 'bg-pink-100'} text-3xl w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
-                        ${imageTag(item, 'w-full h-full object-cover')}
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <h4 class="font-bold text-gray-800 text-sm truncate font-title">${escapeHTML(item.name)}</h4>
-                        ${item.customDetails ? `
-                            <p class="text-[10px] text-pink-500 truncate">${escapeHTML(item.customDetails.summary)}</p>
-                        ` : ''}
-                        <span class="text-xs font-bold text-candyPurple">
-                            ${formatPrice(item.price * item.quantity)}
-                        </span>
-                    </div>
+            cartItemsContainer.innerHTML = cart.map(item => {
+                return `
+                    <div class="flex items-center gap-3 bg-pink-50/50 p-3 rounded-2xl border border-pink-100">
+                        <div class="${item.bgColor} w-14 h-14 rounded-xl flex items-center justify-center shrink-0 overflow-hidden">
+                            ${
+                                imageTag(
+                                    item,
+                                    "w-full h-full object-cover"
+                                )
+                            }
+                        </div>
 
-                    <div class="flex items-center gap-1 bg-white border border-pink-200 rounded-xl p-1">
-                        <button onclick="updateCartQuantity(${item.cartItemId}, -1)" class="p-1 hover:bg-pink-100 rounded-lg text-gray-600" aria-label="Diminuir quantidade">
-                            <i data-lucide="minus" class="w-3 h-3"></i>
-                        </button>
-                        <span class="text-xs font-bold px-1.5">${item.quantity}</span>
-                        <button onclick="updateCartQuantity(${item.cartItemId}, 1)" class="p-1 hover:bg-pink-100 rounded-lg text-gray-600" aria-label="Aumentar quantidade">
-                            <i data-lucide="plus" class="w-3 h-3"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('');
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-gray-800 text-sm font-title">
+                                ${escapeHTML(item.name)}
+                            </h4>
 
-            if (window.lucide) lucide.createIcons();
+                            <p class="text-xs text-gray-600">
+                                ${escapeHTML(item.portion)}
+                            </p>
+
+                            ${
+                                item.customDetails
+                                    ? `
+                                        <p class="text-[10px] text-pink-500">
+                                            ${
+                                                escapeHTML(
+                                                    item.customDetails.summary
+                                                )
+                                            }
+                                        </p>
+                                    `
+                                    : ""
+                            }
+
+                            <span class="text-xs font-bold text-candyPurple">
+                                ${
+                                    formatPrice(
+                                        item.price * item.quantity
+                                    )
+                                }
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-1 bg-white border border-pink-200 rounded-xl p-1 shrink-0">
+                            <button
+                                onclick="updateCartQuantity(${item.cartItemId}, -1)"
+                                class="p-1 hover:bg-pink-100 rounded-lg text-gray-600"
+                                aria-label="Diminuir quantidade"
+                            >
+                                <i data-lucide="minus" class="w-3 h-3"></i>
+                            </button>
+
+                            <span class="text-xs font-bold px-1.5">
+                                ${item.quantity}
+                            </span>
+
+                            <button
+                                onclick="updateCartQuantity(${item.cartItemId}, 1)"
+                                class="p-1 hover:bg-pink-100 rounded-lg text-gray-600"
+                                aria-label="Aumentar quantidade"
+                            >
+                                <i data-lucide="plus" class="w-3 h-3"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            refreshIcons();
         }
 
         function openCart() {
-            cartDrawer.classList.remove('pointer-events-none');
-            cartBackdrop.classList.remove('opacity-0', 'pointer-events-none');
-            cartPanel.classList.remove('translate-x-full');
+            cartDrawer.classList.remove("pointer-events-none");
+
+            cartBackdrop.classList.remove(
+                "opacity-0",
+                "pointer-events-none"
+            );
+
+            cartPanel.classList.remove("translate-x-full");
         }
 
         function closeCart() {
-            cartBackdrop.classList.add('opacity-0', 'pointer-events-none');
-            cartPanel.classList.add('translate-x-full');
+            cartBackdrop.classList.add(
+                "opacity-0",
+                "pointer-events-none"
+            );
+
+            cartPanel.classList.add("translate-x-full");
+
             setTimeout(() => {
-                if (cartPanel.classList.contains('translate-x-full')) {
-                    cartDrawer.classList.add('pointer-events-none');
+                if (cartPanel.classList.contains("translate-x-full")) {
+                    cartDrawer.classList.add("pointer-events-none");
                 }
             }, 300);
         }
 
-        // --- 8. MODAL DE PERSONALIZAÇÃO ---
+        // PERSONALIZAÇÃO
+
         function openCustomizeModal(productId) {
-            customizingProduct = PRODUCTS.find(p => p.id === productId);
-            if (!customizingProduct) return;
+            customizingProduct = PRODUCTS.find(product => {
+                return product.id === productId;
+            });
+
+            if (!customizingProduct) {
+                return;
+            }
 
             coatingSelect.selectedIndex = 0;
             packageSelect.selectedIndex = 0;
-            document.querySelectorAll('.topping-option').forEach(cb => cb.checked = false);
 
-            modalProductName.textContent = customizingProduct.name;
-            modalProductPrice.textContent = `Preço Base: ${formatPrice(customizingProduct.price)}`;
-            modalImage.className = `w-20 h-20 shrink-0 text-5xl ${customizingProduct.bgColor} rounded-2xl flex items-center justify-center overflow-hidden`;
-            modalImage.innerHTML = imageTag(customizingProduct, 'w-full h-full object-cover');
+            document
+                .querySelectorAll(".topping-option")
+                .forEach(checkbox => {
+                    checkbox.checked = false;
+                });
 
-            customizeModal.classList.remove('opacity-0', 'pointer-events-none');
-            customizeModal.firstElementChild.classList.remove('scale-95');
-            customizeModal.firstElementChild.classList.add('scale-100');
+            modalProductName.textContent =
+                customizingProduct.name;
+
+            modalProductPrice.textContent =
+                `Preço base: ${formatPrice(customizingProduct.price)}` +
+                ` • ${customizingProduct.portion}`;
+
+            modalImage.className =
+                `w-20 h-20 shrink-0 ${customizingProduct.bgColor} ` +
+                "rounded-2xl flex items-center justify-center overflow-hidden";
+
+            modalImage.innerHTML = imageTag(
+                customizingProduct,
+                "w-full h-full object-cover"
+            );
+
+            customizeModal.classList.remove(
+                "opacity-0",
+                "pointer-events-none"
+            );
+
+            customizeModal.firstElementChild.classList.remove(
+                "scale-95"
+            );
+
+            customizeModal.firstElementChild.classList.add(
+                "scale-100"
+            );
         }
 
         function closeCustomizeModal() {
-            customizeModal.classList.add('opacity-0', 'pointer-events-none');
-            customizeModal.firstElementChild.classList.remove('scale-100');
-            customizeModal.firstElementChild.classList.add('scale-95');
+            customizeModal.classList.add(
+                "opacity-0",
+                "pointer-events-none"
+            );
+
+            customizeModal.firstElementChild.classList.remove(
+                "scale-100"
+            );
+
+            customizeModal.firstElementChild.classList.add(
+                "scale-95"
+            );
+
             customizingProduct = null;
         }
 
-        // --- 9. EVENTOS ---
+        function addCustomizedProduct() {
+            if (!customizingProduct) {
+                return;
+            }
+
+            const coatingOption =
+                coatingSelect.selectedOptions[0];
+
+            const packageOption =
+                packageSelect.selectedOptions[0];
+
+            const toppings = Array.from(
+                document.querySelectorAll(".topping-option:checked")
+            ).map(checkbox => checkbox.value);
+
+            const extraCost =
+                Number(coatingOption.dataset.extra) +
+                Number(packageOption.dataset.extra) +
+                toppings.length * 1.50;
+
+            const finalPrice =
+                customizingProduct.price + extraCost;
+
+            const summary = [
+                coatingOption.value,
+                toppings.join(", ") || "Sem confeitos",
+                packageOption.value
+            ].join(" | ");
+
+            addToCart(customizingProduct.id, {
+                finalPrice,
+                summary
+            });
+
+            closeCustomizeModal();
+        }
+
+        // EVENTOS
+
         function setupEventListeners() {
-            categoryFiltersContainer.addEventListener('click', (e) => {
-                const btn = e.target.closest('.category-btn');
-                if (!btn) return;
-                selectedCategory = btn.dataset.category;
-                renderCategories();
-                renderProducts();
-            });
+            categoryFiltersContainer.addEventListener("click", event => {
+                const button = event.target.closest(".category-btn");
 
-            priceRange.addEventListener('input', (e) => {
-                maxPrice = parseFloat(e.target.value);
-                priceValueDisplay.textContent = formatPrice(maxPrice);
-                renderProducts();
-            });
-
-            const handleSearch = (e) => {
-                searchQuery = e.target.value;
-                if (e.target === searchInput) searchInputMobile.value = searchQuery;
-                else searchInput.value = searchQuery;
-                renderProducts();
-            };
-            searchInput.addEventListener('input', handleSearch);
-            searchInputMobile.addEventListener('input', handleSearch);
-
-            document.querySelectorAll('.attribute-filter').forEach(checkbox => {
-                checkbox.addEventListener('change', () => {
-                    selectedAttributes = Array.from(document.querySelectorAll('.attribute-filter:checked'))
-                        .map(cb => cb.value);
-                    renderProducts();
-                });
-            });
-
-            sortSelect.addEventListener('change', (e) => {
-                sortBy = e.target.value;
-                renderProducts();
-            });
-
-            const resetAll = () => {
-                selectedCategory = "Todos";
-                maxPrice = 50;
-                searchQuery = "";
-                selectedAttributes = [];
-                sortBy = "popular";
-
-                priceRange.value = 50;
-                priceValueDisplay.textContent = "R$ 50,00";
-                searchInput.value = "";
-                searchInputMobile.value = "";
-                sortSelect.value = "popular";
-                document.querySelectorAll('.attribute-filter').forEach(cb => cb.checked = false);
-
-                renderCategories();
-                renderProducts();
-            };
-
-            resetFiltersBtn.addEventListener('click', resetAll);
-            clearFiltersBtn.addEventListener('click', resetAll);
-
-            cartBtn.addEventListener('click', openCart);
-            closeCartBtn.addEventListener('click', closeCart);
-            cartBackdrop.addEventListener('click', closeCart);
-
-            closeModalBtn.addEventListener('click', closeCustomizeModal);
-            customizeModal.addEventListener('click', (e) => {
-                if (e.target === customizeModal) closeCustomizeModal();
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key !== 'Escape') return;
-                closeCustomizeModal();
-                closeCart();
-                orderSuccessModal.classList.add('hidden');
-            });
-
-            addCustomizedToCartBtn.addEventListener('click', () => {
-                if (!customizingProduct) return;
-
-                const coatingOption = coatingSelect.selectedOptions[0];
-                const packageOption = packageSelect.selectedOptions[0];
-                const toppings = Array.from(document.querySelectorAll('.topping-option:checked')).map(c => c.value);
-
-                const extraCost =
-                    parseFloat(coatingOption.dataset.extra) +
-                    parseFloat(packageOption.dataset.extra) +
-                    toppings.length * 1.5;
-
-                const finalPrice = customizingProduct.price + extraCost;
-                const summary = `${coatingOption.value} | ${toppings.join(', ') || 'Sem confeitos'} | ${packageOption.value}`;
-
-                addToCart(customizingProduct.id, { finalPrice, summary });
-                closeCustomizeModal();
-            });
-
-            checkoutBtn.addEventListener('click', () => {
-                if (cart.length === 0) return;
-
-                closeCart();
-
-                if (typeof confetti === 'function') {
-                    confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+                if (!button) {
+                    return;
                 }
 
-                orderNumber.textContent = Math.floor(1000 + Math.random() * 9000);
-                orderSuccessModal.classList.remove('hidden');
+                selectedCategory = button.dataset.category;
+
+                renderCategories();
+                renderProducts();
+            });
+
+            priceRange.addEventListener("input", event => {
+                maxPrice = Number(event.target.value);
+
+                priceValueDisplay.textContent =
+                    formatPrice(maxPrice);
+
+                renderProducts();
+            });
+
+            function handleSearch(event) {
+                searchQuery = event.target.value;
+
+                if (event.target === searchInput) {
+                    searchInputMobile.value = searchQuery;
+                } else {
+                    searchInput.value = searchQuery;
+                }
+
+                renderProducts();
+            }
+
+            searchInput.addEventListener(
+                "input",
+                handleSearch
+            );
+
+            searchInputMobile.addEventListener(
+                "input",
+                handleSearch
+            );
+
+            document
+                .querySelectorAll(".attribute-filter")
+                .forEach(checkbox => {
+                    checkbox.addEventListener("change", () => {
+                        selectedAttributes = Array.from(
+                            document.querySelectorAll(
+                                ".attribute-filter:checked"
+                            )
+                        ).map(input => input.value);
+
+                        renderProducts();
+                    });
+                });
+
+            sortSelect.addEventListener("change", event => {
+                sortBy = event.target.value;
+
+                renderProducts();
+            });
+
+            resetFiltersBtn.addEventListener(
+                "click",
+                resetAllFilters
+            );
+
+            clearFiltersBtn.addEventListener(
+                "click",
+                resetAllFilters
+            );
+
+            cartBtn.addEventListener(
+                "click",
+                openCart
+            );
+
+            closeCartBtn.addEventListener(
+                "click",
+                closeCart
+            );
+
+            cartBackdrop.addEventListener(
+                "click",
+                closeCart
+            );
+
+            closeModalBtn.addEventListener(
+                "click",
+                closeCustomizeModal
+            );
+
+            customizeModal.addEventListener("click", event => {
+                if (event.target === customizeModal) {
+                    closeCustomizeModal();
+                }
+            });
+
+            document.addEventListener("keydown", event => {
+                if (event.key !== "Escape") {
+                    return;
+                }
+
+                closeCustomizeModal();
+                closeCart();
+
+                orderSuccessModal.classList.add("hidden");
+            });
+
+            addCustomizedToCartBtn.addEventListener(
+                "click",
+                addCustomizedProduct
+            );
+
+            checkoutBtn.addEventListener("click", () => {
+                if (cart.length === 0) {
+                    return;
+                }
+
+                closeCart();
+
+                if (typeof window.confetti === "function") {
+                    window.confetti({
+                        particleCount: 120,
+                        spread: 70,
+                        origin: {
+                            y: 0.6
+                        }
+                    });
+                }
+
+                orderNumber.textContent =
+                    Math.floor(1000 + Math.random() * 9000);
+
+                orderSuccessModal.classList.remove("hidden");
 
                 cart = [];
+
                 updateCartUI();
             });
 
-            closeSuccessBtn.addEventListener('click', () => {
-                orderSuccessModal.classList.add('hidden');
+            closeSuccessBtn.addEventListener("click", () => {
+                orderSuccessModal.classList.add("hidden");
             });
         }
+
+        // INICIALIZAÇÃO
+
+        window.addEventListener("DOMContentLoaded", () => {
+            renderCategories();
+            renderProducts();
+            updateCartUI();
+            setupEventListeners();
+            refreshIcons();
+        });
     </script>
 </body>
 </html>
